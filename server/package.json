@@ -1,0 +1,29 @@
+{
+  "name": "agla-station-server",
+  "version": "1.0.0",
+  "description": "Realtime sync server for aglaStation",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
+    "simulate": "ts-node scripts/simulate-clients.ts"
+  },
+  "dependencies": {
+    "agla-station-shared": "file:../shared",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.1",
+    "socket.io": "^4.8.1"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.9.0",
+    "puppeteer": "^24.43.1",
+    "socket.io-client": "^4.8.1",
+    "ts-node": "^10.9.2",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.6.3"
+  }
+}
