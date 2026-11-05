@@ -10,54 +10,81 @@ export interface LineTheme {
 }
 
 /** DMRC-accurate line colours.
- * Source: Delhi Metro Rail Corporation official route maps. */
+ * Official Delhi Metro Rail Corporation brand palette:
+ * Yellow #F8B800, Blue #0072BC, Red #ED1C24, Green #009E49, Violet #6F2C91,
+ * Pink #EC008C, Magenta #B7295A, Grey #808285, Orange/Airport #E65A15, Aqua #00A3AD.
+ */
 export const METRO_THEMES: Record<string, LineTheme> = {
   yellow: {
     id: 'yellow',
     name: 'Yellow Line',
-    hex: '#F5C518',
+    hex: '#F8B800',
     onLine: '#0A0A0A',
   },
   blue: {
     id: 'blue',
     name: 'Blue Line',
-    hex: '#1E5EAA',
+    hex: '#0072BC',
+    onLine: '#FFFFFF',
+  },
+  'blue-branch': {
+    id: 'blue-branch',
+    name: 'Blue Line (Vaishali)',
+    hex: '#0072BC',
     onLine: '#FFFFFF',
   },
   red: {
     id: 'red',
     name: 'Red Line',
-    hex: '#D0021B',
-    onLine: '#FFFFFF',
-  },
-  violet: {
-    id: 'violet',
-    name: 'Violet Line',
-    hex: '#7B2D8B',
-    onLine: '#FFFFFF',
-  },
-  magenta: {
-    id: 'magenta',
-    name: 'Magenta Line',
-    hex: '#E3007A',
+    hex: '#ED1C24',
     onLine: '#FFFFFF',
   },
   green: {
     id: 'green',
     name: 'Green Line',
-    hex: '#00A650',
+    hex: '#009E49',
+    onLine: '#FFFFFF',
+  },
+  'green-branch': {
+    id: 'green-branch',
+    name: 'Green Line (Kirti Nagar)',
+    hex: '#009E49',
+    onLine: '#FFFFFF',
+  },
+  violet: {
+    id: 'violet',
+    name: 'Violet Line',
+    hex: '#6F2C91',
     onLine: '#FFFFFF',
   },
   pink: {
     id: 'pink',
     name: 'Pink Line',
-    hex: '#FF3366',
+    hex: '#EC008C',
+    onLine: '#FFFFFF',
+  },
+  magenta: {
+    id: 'magenta',
+    name: 'Magenta Line',
+    hex: '#B7295A',
     onLine: '#FFFFFF',
   },
   grey: {
     id: 'grey',
     name: 'Grey Line',
-    hex: '#888888',
+    hex: '#808285',
+    onLine: '#FFFFFF',
+  },
+  orange: {
+    id: 'orange',
+    name: 'Airport Express (Orange)',
+    hex: '#E65A15',
+    onLine: '#FFFFFF',
+  },
+  aqua: {
+    id: 'aqua',
+    name: 'Aqua Line (NMRC)',
+    hex: '#00A3AD',
     onLine: '#FFFFFF',
   },
 };

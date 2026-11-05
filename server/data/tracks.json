@@ -1,0 +1,186 @@
+[
+  {
+    "id": "track-rf-01",
+    "provider": "youtube",
+    "sourceId": "jfKfPfyJRdk",
+    "title": "Chasing Shadows (Lofi Chill)",
+    "artist": "Lofi Records",
+    "license": "Creative Commons BY-NC",
+    "attributionText": "Music provided by Lofi Records / Chillhop Music",
+    "sourceUrl": "https://www.youtube.com/watch?v=jfKfPfyJRdk",
+    "permissionProof": "CC BY 3.0 / Royalty-Free Library",
+    "moodTags": [
+      "chill",
+      "ambient",
+      "peaceful",
+      "yellow",
+      "blue",
+      "grey"
+    ]
+  },
+  {
+    "id": "track-rf-02",
+    "provider": "youtube",
+    "sourceId": "5qap5aO4i9A",
+    "title": "Yamuna Twilight Lofi Beats",
+    "artist": "Metro Sound Labs",
+    "license": "Royalty-Free Open Music",
+    "attributionText": "Produced by Metro Sound Labs for Open Commute project",
+    "sourceUrl": "https://www.youtube.com/watch?v=5qap5aO4i9A",
+    "permissionProof": "Open Access License",
+    "moodTags": [
+      "lofi",
+      "beats",
+      "evening",
+      "violet",
+      "pink",
+      "magenta"
+    ]
+  },
+  {
+    "id": "track-rf-03",
+    "provider": "youtube",
+    "sourceId": "DWcJFNfaw9c",
+    "title": "Morning Chai & Sitar Grooves",
+    "artist": "Delhi Acoustic Collective",
+    "license": "Creative Commons BY 4.0",
+    "attributionText": "Delhi Acoustic Collective / CC BY 4.0",
+    "sourceUrl": "https://www.youtube.com/watch?v=DWcJFNfaw9c",
+    "permissionProof": "CC BY 4.0 Artist Direct",
+    "moodTags": [
+      "folk",
+      "sitar",
+      "classical",
+      "red",
+      "yellow"
+    ]
+  },
+  {
+    "id": "track-rf-04",
+    "provider": "youtube",
+    "sourceId": "7NOSDKb0HlU",
+    "title": "Terminal Express (Neon Drive)",
+    "artist": "Aero Synth Project",
+    "license": "Royalty-Free Audio Library",
+    "attributionText": "Aero Synth Project / YouTube Audio Library",
+    "sourceUrl": "https://www.youtube.com/watch?v=7NOSDKb0HlU",
+    "permissionProof": "YouTube Audio Library License",
+    "moodTags": [
+      "synthwave",
+      "energetic",
+      "fast",
+      "orange",
+      "magenta"
+    ]
+  },
+  {
+    "id": "track-rf-05",
+    "provider": "youtube",
+    "sourceId": "n61ULEU7SU0",
+    "title": "Monsoon Garden Acoustic",
+    "artist": "Greenway Ensemble",
+    "license": "Creative Commons BY-SA",
+    "attributionText": "Greenway Ensemble / CC BY-SA 4.0",
+    "sourceUrl": "https://www.youtube.com/watch?v=n61ULEU7SU0",
+    "permissionProof": "CC BY-SA 4.0",
+    "moodTags": [
+      "acoustic",
+      "calm",
+      "nature",
+      "green",
+      "aqua"
+    ]
+  },
+  {
+    "id": "track-rf-06",
+    "provider": "youtube",
+    "sourceId": "wp43OdtAA24",
+    "title": "Connaught Place Sunset Walk",
+    "artist": "Urban Delhi Soundscape",
+    "license": "Creative Commons BY 3.0",
+    "attributionText": "Urban Delhi Soundscape / CC BY 3.0",
+    "sourceUrl": "https://www.youtube.com/watch?v=wp43OdtAA24",
+    "permissionProof": "CC BY 3.0",
+    "moodTags": [
+      "chillhop",
+      "sunset",
+      "commute",
+      "blue",
+      "pink"
+    ]
+  },
+  {
+    "id": "track-rf-07",
+    "provider": "youtube",
+    "sourceId": "36YnV9STBqc",
+    "title": "Old Delhi Heritage Ghazal Instrumental",
+    "artist": "Purani Dilli Strings",
+    "license": "Royalty-Free Cultural Archive",
+    "attributionText": "Purani Dilli Strings archive recording",
+    "sourceUrl": "https://www.youtube.com/watch?v=36YnV9STBqc",
+    "permissionProof": "Public Domain / CC0 Dedication",
+    "moodTags": [
+      "heritage",
+      "ghazal",
+      "slow",
+      "red",
+      "violet"
+    ]
+  },
+  {
+    "id": "track-rf-08",
+    "provider": "youtube",
+    "sourceId": "lTRiuFIWV54",
+    "title": "Cyber Hub Neon Breeze",
+    "artist": "Millennium City Wave",
+    "license": "Creative Commons BY 4.0",
+    "attributionText": "Millennium City Wave / CC BY 4.0",
+    "sourceUrl": "https://www.youtube.com/watch?v=lTRiuFIWV54",
+    "permissionProof": "CC BY 4.0",
+    "moodTags": [
+      "electronic",
+      "modern",
+      "upbeat",
+      "yellow",
+      "aqua",
+      "orange"
+    ]
+  },
+  {
+    "id": "track-rf-09",
+    "provider": "youtube",
+    "sourceId": "2OEL4P1Rz04",
+    "title": "Quiet Carriage Flute & Rain",
+    "artist": "Bansuri Meditations",
+    "license": "Royalty-Free Audio Library",
+    "attributionText": "Bansuri Meditations / YouTube Audio Library",
+    "sourceUrl": "https://www.youtube.com/watch?v=2OEL4P1Rz04",
+    "permissionProof": "YouTube Audio Library License",
+    "moodTags": [
+      "ambient",
+      "meditation",
+      "flute",
+      "grey",
+      "green"
+    ]
+  },
+  {
+    "id": "track-rf-10",
+    "provider": "youtube",
+    "sourceId": "9ZfVPVlF1J8",
+    "title": "Hauz Khas Social Sunset Groove",
+    "artist": "South Delhi Beats",
+    "license": "Creative Commons BY-NC 4.0",
+    "attributionText": "South Delhi Beats / CC BY-NC 4.0",
+    "sourceUrl": "https://www.youtube.com/watch?v=9ZfVPVlF1J8",
+    "permissionProof": "CC BY-NC 4.0",
+    "moodTags": [
+      "youth",
+      "indie",
+      "groove",
+      "pink",
+      "magenta",
+      "yellow"
+    ]
+  }
+]

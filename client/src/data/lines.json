@@ -1,198 +1,1471 @@
 {
+  "red": {
+    "id": "red",
+    "name": "Red Line",
+    "color": "#ED1C24",
+    "stations": [
+      {
+        "id": "shaheed-sthal",
+        "name": "Shaheed Sthal (New Bus Adda)",
+        "hindi": "शहीद स्थल (न्यू बस अड्डा)"
+      },
+      {
+        "id": "hindon-river",
+        "name": "Hindon River",
+        "hindi": "हिंडन रिवर"
+      },
+      {
+        "id": "arthala",
+        "name": "Arthala",
+        "hindi": "अर्थला"
+      },
+      {
+        "id": "mohan-nagar",
+        "name": "Mohan Nagar",
+        "hindi": "मोहन नगर"
+      },
+      {
+        "id": "shyam-park",
+        "name": "Shyam Park",
+        "hindi": "श्याम पार्क"
+      },
+      {
+        "id": "major-mohit-sharma-rajendra-nagar",
+        "name": "Major Mohit Sharma Rajendra Nagar",
+        "hindi": "मेजर मोहित शर्मा राजेंद्र नगर"
+      },
+      {
+        "id": "raj-bagh",
+        "name": "Raj Bagh",
+        "hindi": "राज बाग"
+      },
+      {
+        "id": "shaheed-nagar",
+        "name": "Shaheed Nagar",
+        "hindi": "शहीद नगर"
+      },
+      {
+        "id": "dilshad-garden",
+        "name": "Dilshad Garden",
+        "hindi": "दिलशाद गार्डन"
+      },
+      {
+        "id": "jhilmil",
+        "name": "Jhilmil",
+        "hindi": "झिलमिल"
+      },
+      {
+        "id": "mansarovar-park",
+        "name": "Mansarovar Park",
+        "hindi": "मानसरोवर पार्क"
+      },
+      {
+        "id": "shahdara",
+        "name": "Shahdara",
+        "hindi": "शाहदरा"
+      },
+      {
+        "id": "welcome",
+        "name": "Welcome",
+        "hindi": "वेलकम"
+      },
+      {
+        "id": "seelampur",
+        "name": "Seelampur",
+        "hindi": "सीलमपुर"
+      },
+      {
+        "id": "shastri-park",
+        "name": "Shastri Park",
+        "hindi": "शास्त्री पार्क"
+      },
+      {
+        "id": "kashmere-gate",
+        "name": "Kashmere Gate",
+        "hindi": "कश्मीरी गेट"
+      },
+      {
+        "id": "tis-hazari",
+        "name": "Tis Hazari",
+        "hindi": "तीस हज़ारी"
+      },
+      {
+        "id": "pulbangash",
+        "name": "Pulbangash",
+        "hindi": "पुलबंगश"
+      },
+      {
+        "id": "pratap-nagar",
+        "name": "Pratap Nagar",
+        "hindi": "प्रताप नगर"
+      },
+      {
+        "id": "shastri-nagar",
+        "name": "Shastri Nagar",
+        "hindi": "शास्त्री नगर"
+      },
+      {
+        "id": "inderlok",
+        "name": "Inderlok",
+        "hindi": "इंदरलोक"
+      },
+      {
+        "id": "kanhaiya-nagar",
+        "name": "Kanhaiya Nagar",
+        "hindi": "कन्हैया नगर"
+      },
+      {
+        "id": "keshav-puram",
+        "name": "Keshav Puram",
+        "hindi": "केशव पुरम"
+      },
+      {
+        "id": "netaji-subhash-place",
+        "name": "Netaji Subhash Place",
+        "hindi": "नेताजी सुभाष प्लेस"
+      },
+      {
+        "id": "kohat-enclave",
+        "name": "Kohat Enclave",
+        "hindi": "कोहाट एन्क्लेव"
+      },
+      {
+        "id": "pitampura",
+        "name": "Pitampura",
+        "hindi": "पीतमपुरा"
+      },
+      {
+        "id": "rohini-east",
+        "name": "Rohini East",
+        "hindi": "रोहिणी पूर्व"
+      },
+      {
+        "id": "rohini-west",
+        "name": "Rohini West",
+        "hindi": "रोहिणी पश्चिम"
+      },
+      {
+        "id": "rithala",
+        "name": "Rithala",
+        "hindi": "रिठाला"
+      }
+    ]
+  },
   "yellow": {
     "id": "yellow",
     "name": "Yellow Line",
-    "color": "#FACC15",
-    "bgGradient": "from-yellow-500/20 via-amber-950/40 to-slate-950",
-    "borderColor": "border-yellow-400",
-    "textColor": "text-yellow-400",
-    "accentColor": "#FACC15",
+    "color": "#F8B800",
     "stations": [
-      { "id": "samaypur-badli", "name": "Samaypur Badli", "hindi": "समयपुर बादली", "x": 180, "y": 60 },
-      { "id": "rohini-sector-18", "name": "Rohini Sector 18-19", "hindi": "रोहिणी सेक्टर 18-19", "x": 190, "y": 100 },
-      { "id": "haiderpur-badli-mor", "name": "Haiderpur Badli Mor", "hindi": "हैदरपुर बादली मोड़", "x": 200, "y": 140 },
-      { "id": "jahangirpuri", "name": "Jahangirpuri", "hindi": "जहांगीरपुरी", "x": 210, "y": 180 },
-      { "id": "adarsh-nagar", "name": "Adarsh Nagar", "hindi": "आदर्श नगर", "x": 220, "y": 220 },
-      { "id": "azadpur", "name": "Azadpur", "hindi": "आजादपुर", "x": 230, "y": 260 },
-      { "id": "model-town", "name": "Model Town", "hindi": "मॉडल टाउन", "x": 240, "y": 300 },
-      { "id": "guru-tegh-bahadur-nagar", "name": "GTB Nagar", "hindi": "गुरु तेग बहादुर नगर", "x": 250, "y": 340 },
-      { "id": "vishwa-vidyalaya", "name": "Vishwa Vidyalaya", "hindi": "विश्वविद्यालय", "x": 260, "y": 380 },
-      { "id": "vidhan-sabha", "name": "Vidhan Sabha", "hindi": "विधान सभा", "x": 270, "y": 420 },
-      { "id": "civil-lines", "name": "Civil Lines", "hindi": "सिविल लाइन्स", "x": 280, "y": 460 },
-      { "id": "kashmere-gate", "name": "Kashmere Gate", "hindi": "कश्मीरी गेट", "x": 290, "y": 500 },
-      { "id": "chandni-chowk", "name": "Chandni Chowk", "hindi": "चांदनी चौक", "x": 290, "y": 550 },
-      { "id": "chawri-bazar", "name": "Chawri Bazar", "hindi": "चावड़ी बाजार", "x": 290, "y": 600 },
-      { "id": "new-delhi", "name": "New Delhi", "hindi": "नई दिल्ली", "x": 290, "y": 650 },
-      { "id": "rajiv-chowk", "name": "Rajiv Chowk", "hindi": "राजीव चौक", "x": 290, "y": 700 },
-      { "id": "patel-chowk", "name": "Patel Chowk", "hindi": "पटेल चौक", "x": 290, "y": 750 },
-      { "id": "central-secretariat", "name": "Central Secretariat", "hindi": "केंद्रीय सचिवालय", "x": 290, "y": 800 },
-      { "id": "udyog-bhawan", "name": "Udyog Bhawan", "hindi": "उद्योग भवन", "x": 290, "y": 850 },
-      { "id": "lok-kalyan-marg", "name": "Lok Kalyan Marg", "hindi": "लोक कल्याण मार्ग", "x": 285, "y": 900 },
-      { "id": "jor-bagh", "name": "Jor Bagh", "hindi": "जोर बाग", "x": 280, "y": 950 },
-      { "id": "dilli-haat-ina", "name": "Dilli Haat - INA", "hindi": "दिल्ली हाट - आईएनए", "x": 275, "y": 1000 },
-      { "id": "aiims", "name": "AIIMS", "hindi": "एम्स", "x": 270, "y": 1050 },
-      { "id": "green-park", "name": "Green Park", "hindi": "ग्रीन पार्क", "x": 265, "y": 1100 },
-      { "id": "hauz-khas", "name": "Hauz Khas", "hindi": "हौज खास", "x": 260, "y": 1150 },
-      { "id": "malviya-nagar", "name": "Malviya Nagar", "hindi": "मालवीय नगर", "x": 255, "y": 1200 },
-      { "id": "saket", "name": "Saket", "hindi": "साकेत", "x": 250, "y": 1250 },
-      { "id": "qutab-minar", "name": "Qutab Minar", "hindi": "कुतुब मीनार", "x": 240, "y": 1300 },
-      { "id": "chhattarpur", "name": "Chhattarpur", "hindi": "छतरपुर", "x": 230, "y": 1350 },
-      { "id": "sultanpur", "name": "Sultanpur", "hindi": "सुल्तानपुर", "x": 220, "y": 1400 },
-      { "id": "ghitorni", "name": "Ghitorni", "hindi": "घिटोरनी", "x": 210, "y": 1450 },
-      { "id": "arjan-garh", "name": "Arjan Garh", "hindi": "अर्जन गढ़", "x": 200, "y": 1500 },
-      { "id": "guru-dronacharya", "name": "Guru Dronacharya", "hindi": "गुरु द्रोणाचार्य", "x": 190, "y": 1550 },
-      { "id": "sikanderpur", "name": "Sikanderpur", "hindi": "सिकंदरपुर", "x": 180, "y": 1600 },
-      { "id": "mg-road", "name": "MG Road", "hindi": "एम जी रोड", "x": 170, "y": 1650 },
-      { "id": "iffco-chowk", "name": "IFFCO Chowk", "hindi": "इफको चौक", "x": 160, "y": 1700 },
-      { "id": "millennium-city-centre", "name": "Millennium City Centre", "hindi": "मिलेनियम सिटी सेंटर", "x": 150, "y": 1750 }
+      {
+        "id": "samaypur-badli",
+        "name": "Samaypur Badli",
+        "hindi": "समयपुर बादली"
+      },
+      {
+        "id": "rohini-sector-18",
+        "name": "Rohini Sector 18-19",
+        "hindi": "रोहिणी सेक्टर 18-19"
+      },
+      {
+        "id": "haiderpur-badli-mor",
+        "name": "Haiderpur Badli Mor",
+        "hindi": "हैदरपुर बादली मोड़"
+      },
+      {
+        "id": "jahangirpuri",
+        "name": "Jahangirpuri",
+        "hindi": "जहांगीरपुरी"
+      },
+      {
+        "id": "adarsh-nagar",
+        "name": "Adarsh Nagar",
+        "hindi": "आदर्श नगर"
+      },
+      {
+        "id": "azadpur",
+        "name": "Azadpur",
+        "hindi": "आजादपुर"
+      },
+      {
+        "id": "model-town",
+        "name": "Model Town",
+        "hindi": "मॉडल टाउन"
+      },
+      {
+        "id": "guru-tegh-bahadur-nagar",
+        "name": "GTB Nagar",
+        "hindi": "गुरु तेग बहादुर नगर"
+      },
+      {
+        "id": "vishwa-vidyalaya",
+        "name": "Vishwa Vidyalaya",
+        "hindi": "विश्वविद्यालय"
+      },
+      {
+        "id": "vidhan-sabha",
+        "name": "Vidhan Sabha",
+        "hindi": "विधान सभा"
+      },
+      {
+        "id": "civil-lines",
+        "name": "Civil Lines",
+        "hindi": "सिविल लाइन्स"
+      },
+      {
+        "id": "kashmere-gate",
+        "name": "Kashmere Gate",
+        "hindi": "कश्मीरी गेट"
+      },
+      {
+        "id": "chandni-chowk",
+        "name": "Chandni Chowk",
+        "hindi": "चांदनी चौक"
+      },
+      {
+        "id": "chawri-bazar",
+        "name": "Chawri Bazar",
+        "hindi": "चावड़ी बाजार"
+      },
+      {
+        "id": "new-delhi",
+        "name": "New Delhi",
+        "hindi": "नई दिल्ली"
+      },
+      {
+        "id": "rajiv-chowk",
+        "name": "Rajiv Chowk",
+        "hindi": "राजीव चौक"
+      },
+      {
+        "id": "patel-chowk",
+        "name": "Patel Chowk",
+        "hindi": "पटेल चौक"
+      },
+      {
+        "id": "central-secretariat",
+        "name": "Central Secretariat",
+        "hindi": "केंद्रीय सचिवालय"
+      },
+      {
+        "id": "udyog-bhawan",
+        "name": "Udyog Bhawan",
+        "hindi": "उद्योग भवन"
+      },
+      {
+        "id": "lok-kalyan-marg",
+        "name": "Lok Kalyan Marg",
+        "hindi": "लोक कल्याण मार्ग"
+      },
+      {
+        "id": "jor-bagh",
+        "name": "Jor Bagh",
+        "hindi": "जोर बाग"
+      },
+      {
+        "id": "dilli-haat-ina",
+        "name": "Dilli Haat - INA",
+        "hindi": "दिल्ली हाट - आईएनए"
+      },
+      {
+        "id": "aiims",
+        "name": "AIIMS",
+        "hindi": "एम्स"
+      },
+      {
+        "id": "green-park",
+        "name": "Green Park",
+        "hindi": "ग्रीन पार्क"
+      },
+      {
+        "id": "hauz-khas",
+        "name": "Hauz Khas",
+        "hindi": "हौज खास"
+      },
+      {
+        "id": "malviya-nagar",
+        "name": "Malviya Nagar",
+        "hindi": "मालवीय नगर"
+      },
+      {
+        "id": "saket",
+        "name": "Saket",
+        "hindi": "साकेत"
+      },
+      {
+        "id": "qutab-minar",
+        "name": "Qutab Minar",
+        "hindi": "कुतुब मीनार"
+      },
+      {
+        "id": "chhattarpur",
+        "name": "Chhattarpur",
+        "hindi": "छतरपुर"
+      },
+      {
+        "id": "sultanpur",
+        "name": "Sultanpur",
+        "hindi": "सुल्तानपुर"
+      },
+      {
+        "id": "ghitorni",
+        "name": "Ghitorni",
+        "hindi": "घिटोरनी"
+      },
+      {
+        "id": "arjan-garh",
+        "name": "Arjan Garh",
+        "hindi": "अर्जन गढ़"
+      },
+      {
+        "id": "guru-dronacharya",
+        "name": "Guru Dronacharya",
+        "hindi": "गुरु द्रोणाचार्य"
+      },
+      {
+        "id": "sikanderpur",
+        "name": "Sikanderpur",
+        "hindi": "सिकंदरपुर"
+      },
+      {
+        "id": "mg-road",
+        "name": "MG Road",
+        "hindi": "एम जी रोड"
+      },
+      {
+        "id": "iffco-chowk",
+        "name": "IFFCO Chowk",
+        "hindi": "इफको चौक"
+      },
+      {
+        "id": "millennium-city-centre",
+        "name": "Millennium City Centre",
+        "hindi": "मिलेनियम सिटी सेंटर"
+      }
     ]
   },
   "blue": {
     "id": "blue",
     "name": "Blue Line",
-    "color": "#3B82F6",
-    "bgGradient": "from-blue-500/20 via-blue-950/40 to-slate-950",
-    "borderColor": "border-blue-500",
-    "textColor": "text-blue-400",
-    "accentColor": "#3B82F6",
+    "color": "#0072BC",
     "stations": [
-      { "id": "dwarka-sec-21", "name": "Dwarka Sector 21", "hindi": "द्वारका सेक्टर 21", "x": 60, "y": 880 },
-      { "id": "dwarka-sec-8", "name": "Dwarka Sector 8", "hindi": "द्वारका सेक्टर 8", "x": 90, "y": 860 },
-      { "id": "dwarka", "name": "Dwarka", "hindi": "द्वारका", "x": 120, "y": 840 },
-      { "id": "dwarka-mor", "name": "Dwarka Mor", "hindi": "द्वारका मोड़", "x": 150, "y": 820 },
-      { "id": "uttam-nagar-west", "name": "Uttam Nagar West", "hindi": "उत्तम नगर पश्चिम", "x": 180, "y": 800 },
-      { "id": "uttam-nagar-east", "name": "Uttam Nagar East", "hindi": "उत्तम नगर पूर्व", "x": 210, "y": 780 },
-      { "id": "janakpuri-west", "name": "Janakpuri West", "hindi": "जनकपुरी पश्चिम", "x": 240, "y": 760 },
-      { "id": "janakpuri-east", "name": "Janakpuri East", "hindi": "जनकपुरी पूर्व", "x": 270, "y": 750 },
-      { "id": "tilak-nagar", "name": "Tilak Nagar", "hindi": "तिलक नगर", "x": 300, "y": 740 },
-      { "id": "subhash-nagar", "name": "Subhash Nagar", "hindi": "सुभाष नगर", "x": 330, "y": 730 },
-      { "id": "tagore-garden", "name": "Tagore Garden", "hindi": "टैगोर गार्डन", "x": 360, "y": 720 },
-      { "id": "rajouri-garden", "name": "Rajouri Garden", "hindi": "राजौरी गार्डन", "x": 390, "y": 710 },
-      { "id": "ramesh-nagar", "name": "Ramesh Nagar", "hindi": "रमेश नगर", "x": 420, "y": 705 },
-      { "id": "moti-nagar", "name": "Moti Nagar", "hindi": "मोती नगर", "x": 450, "y": 700 },
-      { "id": "kirti-nagar", "name": "Kirti Nagar", "hindi": "कीर्ति नगर", "x": 480, "y": 700 },
-      { "id": "shadipur", "name": "Shadipur", "hindi": "शादीपुर", "x": 510, "y": 700 },
-      { "id": "patel-nagar", "name": "Patel Nagar", "hindi": "पटेल नगर", "x": 540, "y": 700 },
-      { "id": "rajendra-place", "name": "Rajendra Place", "hindi": "राजेंद्र प्लेस", "x": 570, "y": 700 },
-      { "id": "karol-bagh", "name": "Karol Bagh", "hindi": "करोल बाग", "x": 600, "y": 700 },
-      { "id": "jhandewalan", "name": "Jhandewalan", "hindi": "झंडेवालान", "x": 630, "y": 700 },
-      { "id": "rk-ashram-marg", "name": "RK Ashram Marg", "hindi": "आर के आश्रम मार्ग", "x": 660, "y": 700 },
-      { "id": "rajiv-chowk", "name": "Rajiv Chowk", "hindi": "राजीव चौक", "x": 690, "y": 700 },
-      { "id": "barakhamba-road", "name": "Barakhamba Road", "hindi": "बाराखंभा रोड", "x": 720, "y": 700 },
-      { "id": "mandi-house", "name": "Mandi House", "hindi": "मंडी हाउस", "x": 750, "y": 700 },
-      { "id": "supreme-court", "name": "Supreme Court", "hindi": "सुप्रीम कोर्ट", "x": 780, "y": 710 },
-      { "id": "indraprastha", "name": "Indraprastha", "hindi": "इंद्रप्रस्थ", "x": 810, "y": 720 },
-      { "id": "yamuna-bank", "name": "Yamuna Bank", "hindi": "यमुना बैंक", "x": 840, "y": 730 },
-      { "id": "akshardham", "name": "Akshardham", "hindi": "अक्षरधाम", "x": 870, "y": 750 },
-      { "id": "mayur-vihar-1", "name": "Mayur Vihar-I", "hindi": "मयूर विहार-I", "x": 900, "y": 770 },
-      { "id": "mayur-vihar-ext", "name": "Mayur Vihar Ext", "hindi": "मयूर विहार एक्सटेंशन", "x": 930, "y": 790 },
-      { "id": "new-ashok-nagar", "name": "New Ashok Nagar", "hindi": "न्यू अशोक नगर", "x": 960, "y": 810 },
-      { "id": "noida-sec-15", "name": "Noida Sector 15", "hindi": "नोएडा सेक्टर 15", "x": 990, "y": 830 },
-      { "id": "noida-sec-16", "name": "Noida Sector 16", "hindi": "नोएडा सेक्टर 16", "x": 1020, "y": 850 },
-      { "id": "noida-sec-18", "name": "Noida Sector 18", "hindi": "नोएडा सेक्टर 18", "x": 1050, "y": 870 },
-      { "id": "botanical-garden", "name": "Botanical Garden", "hindi": "बोटैनिकल गार्डन", "x": 1080, "y": 890 },
-      { "id": "golf-course", "name": "Golf Course", "hindi": "गोल्फ कोर्स", "x": 1110, "y": 910 },
-      { "id": "noida-city-centre", "name": "Noida City Centre", "hindi": "नोएडा सिटी सेंटर", "x": 1140, "y": 930 },
-      { "id": "noida-electronic-city", "name": "Noida Electronic City", "hindi": "नोएडा इलेक्ट्रॉनिक सिटी", "x": 1180, "y": 960 }
+      {
+        "id": "dwarka-sec-21",
+        "name": "Dwarka Sector 21",
+        "hindi": "द्वारका सेक्टर 21"
+      },
+      {
+        "id": "dwarka-sec-8",
+        "name": "Dwarka Sector 8",
+        "hindi": "द्वारका सेक्टर 8"
+      },
+      {
+        "id": "dwarka-sec-9",
+        "name": "Dwarka Sector 9",
+        "hindi": "द्वारका सेक्टर 9"
+      },
+      {
+        "id": "dwarka-sec-10",
+        "name": "Dwarka Sector 10",
+        "hindi": "द्वारका सेक्टर 10"
+      },
+      {
+        "id": "dwarka-sec-11",
+        "name": "Dwarka Sector 11",
+        "hindi": "द्वारका सेक्टर 11"
+      },
+      {
+        "id": "dwarka-sec-12",
+        "name": "Dwarka Sector 12",
+        "hindi": "द्वारका सेक्टर 12"
+      },
+      {
+        "id": "dwarka-sec-13",
+        "name": "Dwarka Sector 13",
+        "hindi": "द्वारका सेक्टर 13"
+      },
+      {
+        "id": "dwarka-sec-14",
+        "name": "Dwarka Sector 14",
+        "hindi": "द्वारका सेक्टर 14"
+      },
+      {
+        "id": "dwarka",
+        "name": "Dwarka",
+        "hindi": "द्वारका"
+      },
+      {
+        "id": "dwarka-mor",
+        "name": "Dwarka Mor",
+        "hindi": "द्वारका मोड़"
+      },
+      {
+        "id": "nawada",
+        "name": "Nawada",
+        "hindi": "नवादा"
+      },
+      {
+        "id": "uttam-nagar-west",
+        "name": "Uttam Nagar West",
+        "hindi": "उत्तम नगर पश्चिम"
+      },
+      {
+        "id": "uttam-nagar-east",
+        "name": "Uttam Nagar East",
+        "hindi": "उत्तम नगर पूर्व"
+      },
+      {
+        "id": "janakpuri-west",
+        "name": "Janakpuri West",
+        "hindi": "जनकपुरी पश्चिम"
+      },
+      {
+        "id": "janakpuri-east",
+        "name": "Janakpuri East",
+        "hindi": "जनकपुरी पूर्व"
+      },
+      {
+        "id": "tilak-nagar",
+        "name": "Tilak Nagar",
+        "hindi": "तिलक नगर"
+      },
+      {
+        "id": "subhash-nagar",
+        "name": "Subhash Nagar",
+        "hindi": "सुभाष नगर"
+      },
+      {
+        "id": "tagore-garden",
+        "name": "Tagore Garden",
+        "hindi": "टैगोर गार्डन"
+      },
+      {
+        "id": "rajouri-garden",
+        "name": "Rajouri Garden",
+        "hindi": "राजौरी गार्डन"
+      },
+      {
+        "id": "ramesh-nagar",
+        "name": "Ramesh Nagar",
+        "hindi": "रमेश नगर"
+      },
+      {
+        "id": "moti-nagar",
+        "name": "Moti Nagar",
+        "hindi": "मोती नगर"
+      },
+      {
+        "id": "kirti-nagar",
+        "name": "Kirti Nagar",
+        "hindi": "कीर्ति नगर"
+      },
+      {
+        "id": "shadipur",
+        "name": "Shadipur",
+        "hindi": "शादीपुर"
+      },
+      {
+        "id": "patel-nagar",
+        "name": "Patel Nagar",
+        "hindi": "पटेल नगर"
+      },
+      {
+        "id": "rajendra-place",
+        "name": "Rajendra Place",
+        "hindi": "राजेंद्र प्लेस"
+      },
+      {
+        "id": "karol-bagh",
+        "name": "Karol Bagh",
+        "hindi": "करोल बाग"
+      },
+      {
+        "id": "jhandewalan",
+        "name": "Jhandewalan",
+        "hindi": "झंडेवालान"
+      },
+      {
+        "id": "rk-ashram-marg",
+        "name": "RK Ashram Marg",
+        "hindi": "आर के आश्रम मार्ग"
+      },
+      {
+        "id": "rajiv-chowk",
+        "name": "Rajiv Chowk",
+        "hindi": "राजीव चौक"
+      },
+      {
+        "id": "barakhamba-road",
+        "name": "Barakhamba Road",
+        "hindi": "बाराखंभा रोड"
+      },
+      {
+        "id": "mandi-house",
+        "name": "Mandi House",
+        "hindi": "मंडी हाउस"
+      },
+      {
+        "id": "supreme-court",
+        "name": "Supreme Court",
+        "hindi": "सुप्रीम कोर्ट"
+      },
+      {
+        "id": "indraprastha",
+        "name": "Indraprastha",
+        "hindi": "इंद्रप्रस्थ"
+      },
+      {
+        "id": "yamuna-bank",
+        "name": "Yamuna Bank",
+        "hindi": "यमुना बैंक"
+      },
+      {
+        "id": "akshardham",
+        "name": "Akshardham",
+        "hindi": "अक्षरधाम"
+      },
+      {
+        "id": "mayur-vihar-1",
+        "name": "Mayur Vihar-I",
+        "hindi": "मयूर विहार-1"
+      },
+      {
+        "id": "mayur-vihar-ext",
+        "name": "Mayur Vihar Ext",
+        "hindi": "मयूर विहार एक्सटेंशन"
+      },
+      {
+        "id": "new-ashok-nagar",
+        "name": "New Ashok Nagar",
+        "hindi": "न्यू अशोक नगर"
+      },
+      {
+        "id": "noida-sec-15",
+        "name": "Noida Sector 15",
+        "hindi": "नोएडा सेक्टर 15"
+      },
+      {
+        "id": "noida-sec-16",
+        "name": "Noida Sector 16",
+        "hindi": "नोएडा सेक्टर 16"
+      },
+      {
+        "id": "noida-sec-18",
+        "name": "Noida Sector 18",
+        "hindi": "नोएडा सेक्टर 18"
+      },
+      {
+        "id": "botanical-garden",
+        "name": "Botanical Garden",
+        "hindi": "बॉटनिकल गार्डन"
+      },
+      {
+        "id": "golf-course",
+        "name": "Golf Course",
+        "hindi": "गोल्फ कोर्स"
+      },
+      {
+        "id": "noida-city-centre",
+        "name": "Noida City Centre",
+        "hindi": "नोएडा सिटी सेंटर"
+      },
+      {
+        "id": "noida-sec-34",
+        "name": "Noida Sector 34",
+        "hindi": "नोएडा सेक्टर 34"
+      },
+      {
+        "id": "noida-sec-52",
+        "name": "Noida Sector 52",
+        "hindi": "नोएडा सेक्टर 52"
+      },
+      {
+        "id": "noida-sec-61",
+        "name": "Noida Sector 61",
+        "hindi": "नोएडा सेक्टर 61"
+      },
+      {
+        "id": "noida-sec-59",
+        "name": "Noida Sector 59",
+        "hindi": "नोएडा सेक्टर 59"
+      },
+      {
+        "id": "noida-sec-62",
+        "name": "Noida Sector 62",
+        "hindi": "नोएडा सेक्टर 62"
+      },
+      {
+        "id": "noida-electronic-city",
+        "name": "Noida Electronic City",
+        "hindi": "नोएडा इलेक्ट्रॉनिक सिटी"
+      }
     ]
   },
-  "red": {
-    "id": "red",
-    "name": "Red Line",
-    "color": "#EF4444",
-    "bgGradient": "from-red-500/20 via-red-950/40 to-slate-950",
-    "borderColor": "border-red-500",
-    "textColor": "text-red-400",
-    "accentColor": "#EF4444",
+  "blue-branch": {
+    "id": "blue-branch",
+    "name": "Blue Line (Vaishali Branch)",
+    "color": "#0072BC",
     "stations": [
-      { "id": "rithala", "name": "Rithala", "hindi": "रिठाला", "x": 80, "y": 300 },
-      { "id": "rohini-west", "name": "Rohini West", "hindi": "रोहिणी पश्चिम", "x": 110, "y": 310 },
-      { "id": "rohini-east", "name": "Rohini East", "hindi": "रोहिणी पूर्व", "x": 140, "y": 320 },
-      { "id": "pitampura", "name": "Pitampura", "hindi": "पीतमपुरा", "x": 170, "y": 330 },
-      { "id": "kohat-enclave", "name": "Kohat Enclave", "hindi": "कोहाट एन्क्लेव", "x": 200, "y": 340 },
-      { "id": "netaji-subhash-place", "name": "Netaji Subhash Place", "hindi": "नेताजी सुभाष प्लेस", "x": 230, "y": 350 },
-      { "id": "keshav-puram", "name": "Keshav Puram", "hindi": "केशव पुरम", "x": 260, "y": 360 },
-      { "id": "kanhaiya-nagar", "name": "Kanhaiya Nagar", "hindi": "कन्हैया नगर", "x": 290, "y": 370 },
-      { "id": "inderlok", "name": "Inderlok", "hindi": "इंदरलोक", "x": 320, "y": 380 },
-      { "id": "shastri-nagar", "name": "Shastri Nagar", "hindi": "शास्त्री नगर", "x": 350, "y": 400 },
-      { "id": "pratap-nagar", "name": "Pratap Nagar", "hindi": "प्रताप नगर", "x": 380, "y": 420 },
-      { "id": "pulbangash", "name": "Pulbangash", "hindi": "पुलबंगश", "x": 410, "y": 440 },
-      { "id": "tis-hazari", "name": "Tis Hazari", "hindi": "तीस हजारी", "x": 440, "y": 460 },
-      { "id": "kashmere-gate", "name": "Kashmere Gate", "hindi": "कश्मीरी गेट", "x": 470, "y": 500 },
-      { "id": "shastri-park", "name": "Shastri Park", "hindi": "शास्त्री पार्क", "x": 510, "y": 480 },
-      { "id": "seelampur", "name": "Seelampur", "hindi": "सीलमपुर", "x": 550, "y": 460 },
-      { "id": "welcome", "name": "Welcome", "hindi": "वेलकम", "x": 590, "y": 440 },
-      { "id": "shahdara", "name": "Shahdara", "hindi": "शाहदरा", "x": 630, "y": 420 },
-      { "id": "mansarovar-park", "name": "Mansarovar Park", "hindi": "मानसरोवर पार्क", "x": 670, "y": 400 },
-      { "id": "jhilmil", "name": "Jhilmil", "hindi": "झिलमिल", "x": 710, "y": 380 },
-      { "id": "dilshad-garden", "name": "Dilshad Garden", "hindi": "दिलशाद गार्डन", "x": 750, "y": 360 },
-      { "id": "shaheed-sthal", "name": "Shaheed Sthal (New Bus Adda)", "hindi": "शहीद स्थल", "x": 800, "y": 340 }
+      {
+        "id": "yamuna-bank",
+        "name": "Yamuna Bank",
+        "hindi": "यमुना बैंक"
+      },
+      {
+        "id": "laxmi-nagar",
+        "name": "Laxmi Nagar",
+        "hindi": "लक्ष्मी नगर"
+      },
+      {
+        "id": "nirman-vihar",
+        "name": "Nirman Vihar",
+        "hindi": "निर्माण विहार"
+      },
+      {
+        "id": "preet-vihar",
+        "name": "Preet Vihar",
+        "hindi": "प्रीत विहार"
+      },
+      {
+        "id": "karkarduma",
+        "name": "Karkarduma",
+        "hindi": "कड़कड़डूमा"
+      },
+      {
+        "id": "anand-vihar",
+        "name": "Anand Vihar ISBT",
+        "hindi": "आनंद विहार आईएसबीटी"
+      },
+      {
+        "id": "kaushambi",
+        "name": "Kaushambi",
+        "hindi": "कौशाम्बी"
+      },
+      {
+        "id": "vaishali",
+        "name": "Vaishali",
+        "hindi": "वैशाली"
+      }
+    ]
+  },
+  "green": {
+    "id": "green",
+    "name": "Green Line",
+    "color": "#009E49",
+    "stations": [
+      {
+        "id": "inderlok",
+        "name": "Inderlok",
+        "hindi": "इंदरलोक"
+      },
+      {
+        "id": "ashok-park-main",
+        "name": "Ashok Park Main",
+        "hindi": "अशोक पार्क मेन"
+      },
+      {
+        "id": "punjabi-bagh-west",
+        "name": "Punjabi Bagh West",
+        "hindi": "पंजाबी बाग पश्चिम"
+      },
+      {
+        "id": "shivaji-park",
+        "name": "Shivaji Park",
+        "hindi": "शिवाजी पार्क"
+      },
+      {
+        "id": "madipur",
+        "name": "Madipur",
+        "hindi": "मादीपुर"
+      },
+      {
+        "id": "paschim-vihar-east",
+        "name": "Paschim Vihar East",
+        "hindi": "पश्चिम विहार पूर्व"
+      },
+      {
+        "id": "paschim-vihar-west",
+        "name": "Paschim Vihar West",
+        "hindi": "पश्चिम विहार पश्चिम"
+      },
+      {
+        "id": "peera-garhi",
+        "name": "Peera Garhi",
+        "hindi": "पीरागढ़ी"
+      },
+      {
+        "id": "udyog-nagar",
+        "name": "Udyog Nagar",
+        "hindi": "उद्योग नगर"
+      },
+      {
+        "id": "maharaja-surajmal-stadium",
+        "name": "Maharaja Surajmal Stadium",
+        "hindi": "महाराजा सूरजमल स्टेडियम"
+      },
+      {
+        "id": "nangloi",
+        "name": "Nangloi",
+        "hindi": "नांगलोई"
+      },
+      {
+        "id": "nangloi-railway-station",
+        "name": "Nangloi Railway Station",
+        "hindi": "नांगलोई रेलवे स्टेशन"
+      },
+      {
+        "id": "rajdhani-park",
+        "name": "Rajdhani Park",
+        "hindi": "राजधानी पार्क"
+      },
+      {
+        "id": "mundka",
+        "name": "Mundka",
+        "hindi": "मुंडका"
+      },
+      {
+        "id": "mundka-industrial-area",
+        "name": "Mundka Industrial Area",
+        "hindi": "मुंडका औद्योगिक क्षेत्र"
+      },
+      {
+        "id": "ghevra-metro-station",
+        "name": "Ghevra",
+        "hindi": "घेवरा"
+      },
+      {
+        "id": "tikri-kalan",
+        "name": "Tikri Kalan",
+        "hindi": "टिकरी कलां"
+      },
+      {
+        "id": "tikri-border",
+        "name": "Tikri Border",
+        "hindi": "टिकरी बॉर्डर"
+      },
+      {
+        "id": "pandit-shree-ram-sharma",
+        "name": "Pandit Shree Ram Sharma",
+        "hindi": "पंडित श्री राम शर्मा"
+      },
+      {
+        "id": "bahadurgarh-city",
+        "name": "Bahadurgarh City",
+        "hindi": "बहादुरगढ़ सिटी"
+      },
+      {
+        "id": "brigadier-hoshiar-singh",
+        "name": "Brigadier Hoshiar Singh",
+        "hindi": "ब्रिगेडियर होशियार सिंह"
+      }
+    ]
+  },
+  "green-branch": {
+    "id": "green-branch",
+    "name": "Green Line (Kirti Nagar Branch)",
+    "color": "#009E49",
+    "stations": [
+      {
+        "id": "kirti-nagar",
+        "name": "Kirti Nagar",
+        "hindi": "कीर्ति नगर"
+      },
+      {
+        "id": "satguru-ram-singh-marg",
+        "name": "Satguru Ram Singh Marg",
+        "hindi": "सतगुरु राम सिंह मार्ग"
+      },
+      {
+        "id": "ashok-park-main",
+        "name": "Ashok Park Main",
+        "hindi": "अशोक पार्क मेन"
+      }
     ]
   },
   "violet": {
     "id": "violet",
     "name": "Violet Line",
-    "color": "#8B5CF6",
-    "bgGradient": "from-purple-500/20 via-purple-950/40 to-slate-950",
-    "borderColor": "border-purple-500",
-    "textColor": "text-purple-400",
-    "accentColor": "#8B5CF6",
+    "color": "#6F2C91",
     "stations": [
-      { "id": "kashmere-gate", "name": "Kashmere Gate", "hindi": "कश्मीरी गेट", "x": 470, "y": 500 },
-      { "id": "lal-quila", "name": "Lal Quila", "hindi": "लाल किला", "x": 475, "y": 540 },
-      { "id": "jama-masjid", "name": "Jama Masjid", "hindi": "जामा मस्जिद", "x": 480, "y": 580 },
-      { "id": "delhi-gate", "name": "Delhi Gate", "hindi": "दिल्ली गेट", "x": 485, "y": 620 },
-      { "id": "ito", "name": "ITO", "hindi": "आईटीओ", "x": 490, "y": 660 },
-      { "id": "mandi-house", "name": "Mandi House", "hindi": "मंडी हाउस", "x": 495, "y": 700 },
-      { "id": "janpath", "name": "Janpath", "hindi": "जनपथ", "x": 490, "y": 740 },
-      { "id": "central-secretariat", "name": "Central Secretariat", "hindi": "केंद्रीय सचिवालय", "x": 480, "y": 800 },
-      { "id": "khan-market", "name": "Khan Market", "hindi": "खान मार्केट", "x": 485, "y": 850 },
-      { "id": "jln-stadium", "name": "JLN Stadium", "hindi": "जेएलएन स्टेडियम", "x": 490, "y": 900 },
-      { "id": "jangpura", "name": "Jangpura", "hindi": "जंगपुरा", "x": 495, "y": 950 },
-      { "id": "lajpat-nagar", "name": "Lajpat Nagar", "hindi": "लाजपत नगर", "x": 500, "y": 1000 },
-      { "id": "moolchand", "name": "Moolchand", "hindi": "मूलचंद", "x": 505, "y": 1050 },
-      { "id": "kailash-colony", "name": "Kailash Colony", "hindi": "कैलाश कॉलोनी", "x": 510, "y": 1100 },
-      { "id": "nehru-place", "name": "Nehru Place", "hindi": "नेहरू प्लेस", "x": 515, "y": 1150 },
-      { "id": "kalkaji-mandir", "name": "Kalkaji Mandir", "hindi": "कालकाजी मंदिर", "x": 520, "y": 1200 },
-      { "id": "govind-puri", "name": "Govind Puri", "hindi": "गोविंद पुरी", "x": 525, "y": 1250 },
-      { "id": "badarpur-border", "name": "Badarpur Border", "hindi": "बदरपुर बॉर्डर", "x": 540, "y": 1350 },
-      { "id": "raja-nahar-singh", "name": "Raja Nahar Singh (Ballabhgarh)", "hindi": "राजा नाहर सिंह", "x": 560, "y": 1500 }
+      {
+        "id": "kashmere-gate",
+        "name": "Kashmere Gate",
+        "hindi": "कश्मीरी गेट"
+      },
+      {
+        "id": "lal-quila",
+        "name": "Lal Quila",
+        "hindi": "लाल किला"
+      },
+      {
+        "id": "jama-masjid",
+        "name": "Jama Masjid",
+        "hindi": "जामा मस्जिद"
+      },
+      {
+        "id": "delhi-gate",
+        "name": "Delhi Gate",
+        "hindi": "दिल्ली गेट"
+      },
+      {
+        "id": "ito",
+        "name": "ITO",
+        "hindi": "आईटीओ"
+      },
+      {
+        "id": "mandi-house",
+        "name": "Mandi House",
+        "hindi": "मंडी हाउस"
+      },
+      {
+        "id": "janpath",
+        "name": "Janpath",
+        "hindi": "जनपथ"
+      },
+      {
+        "id": "central-secretariat",
+        "name": "Central Secretariat",
+        "hindi": "केंद्रीय सचिवालय"
+      },
+      {
+        "id": "khan-market",
+        "name": "Khan Market",
+        "hindi": "खान मार्केट"
+      },
+      {
+        "id": "jln-stadium",
+        "name": "JLN Stadium",
+        "hindi": "जेएलएन स्टेडियम"
+      },
+      {
+        "id": "jangpura",
+        "name": "Jangpura",
+        "hindi": "जंगपुरा"
+      },
+      {
+        "id": "lajpat-nagar",
+        "name": "Lajpat Nagar",
+        "hindi": "लाजपत नगर"
+      },
+      {
+        "id": "moolchand",
+        "name": "Moolchand",
+        "hindi": "मूलचंद"
+      },
+      {
+        "id": "kailash-colony",
+        "name": "Kailash Colony",
+        "hindi": "कैलाश कॉलोनी"
+      },
+      {
+        "id": "nehru-place",
+        "name": "Nehru Place",
+        "hindi": "नेहरू प्लेस"
+      },
+      {
+        "id": "kalkaji-mandir",
+        "name": "Kalkaji Mandir",
+        "hindi": "कालकाजी मंदिर"
+      },
+      {
+        "id": "govind-puri",
+        "name": "Govind Puri",
+        "hindi": "गोविंदपुरी"
+      },
+      {
+        "id": "harkesh-nagar-okhla",
+        "name": "Harkesh Nagar Okhla",
+        "hindi": "हरकेश नगर ओखला"
+      },
+      {
+        "id": "jasola-apollo",
+        "name": "Jasola Apollo",
+        "hindi": "जसोला अपोलो"
+      },
+      {
+        "id": "sarita-vihar",
+        "name": "Sarita Vihar",
+        "hindi": "सरिता विहार"
+      },
+      {
+        "id": "mohan-estate",
+        "name": "Mohan Estate",
+        "hindi": "मोहन एस्टेट"
+      },
+      {
+        "id": "tughlakabad-station",
+        "name": "Tughlakabad Station",
+        "hindi": "तुगलकाबाद स्टेशन"
+      },
+      {
+        "id": "badarpur-border",
+        "name": "Badarpur Border",
+        "hindi": "बदरपुर बॉर्डर"
+      },
+      {
+        "id": "sarai",
+        "name": "Sarai",
+        "hindi": "सराय"
+      },
+      {
+        "id": "nhpc-chowk",
+        "name": "NHPC Chowk",
+        "hindi": "एनएचपीसी चौक"
+      },
+      {
+        "id": "mewala-maharajpur",
+        "name": "Mewala Maharajpur",
+        "hindi": "मेवला महाराजपुर"
+      },
+      {
+        "id": "sector-28-faridabad",
+        "name": "Sector 28",
+        "hindi": "सेक्टर 28"
+      },
+      {
+        "id": "badkal-mor",
+        "name": "Badkal Mor",
+        "hindi": "बड़खल मोड़"
+      },
+      {
+        "id": "old-faridabad",
+        "name": "Old Faridabad",
+        "hindi": "ओल्ड फरीदाबाद"
+      },
+      {
+        "id": "neelam-chowk-ajronda",
+        "name": "Neelam Chowk Ajronda",
+        "hindi": "नीलम चौक अजरौंदा"
+      },
+      {
+        "id": "bata-chowk",
+        "name": "Bata Chowk",
+        "hindi": "बाटा चौक"
+      },
+      {
+        "id": "escorts-mujesar",
+        "name": "Escorts Mujesar",
+        "hindi": "एस्कॉर्ट्स मुजेसर"
+      },
+      {
+        "id": "sant-surdas-sihi",
+        "name": "Sant Surdas - Sihi",
+        "hindi": "संत सूरदास - सीही"
+      },
+      {
+        "id": "raja-nahar-singh",
+        "name": "Raja Nahar Singh (Ballabhgarh)",
+        "hindi": "राजा नाहर सिंह (बल्लभगढ़)"
+      }
+    ]
+  },
+  "pink": {
+    "id": "pink",
+    "name": "Pink Line",
+    "color": "#EC008C",
+    "stations": [
+      {
+        "id": "majlis-park",
+        "name": "Majlis Park",
+        "hindi": "मजलिस पार्क"
+      },
+      {
+        "id": "azadpur",
+        "name": "Azadpur",
+        "hindi": "आजादपुर"
+      },
+      {
+        "id": "shalimar-bagh",
+        "name": "Shalimar Bagh",
+        "hindi": "शालीमार बाग"
+      },
+      {
+        "id": "netaji-subhash-place",
+        "name": "Netaji Subhash Place",
+        "hindi": "नेताजी सुभाष प्लेस"
+      },
+      {
+        "id": "shakurpur",
+        "name": "Shakurpur",
+        "hindi": "शकूरपुर"
+      },
+      {
+        "id": "punjabi-bagh-west",
+        "name": "Punjabi Bagh West",
+        "hindi": "पंजाबी बाग पश्चिम"
+      },
+      {
+        "id": "esi-basaidarapur",
+        "name": "ESI Basaidarapur",
+        "hindi": "ईएसआई बसईदारापुर"
+      },
+      {
+        "id": "rajouri-garden",
+        "name": "Rajouri Garden",
+        "hindi": "राजौरी गार्डन"
+      },
+      {
+        "id": "mayapuri",
+        "name": "Mayapuri",
+        "hindi": "मायापुरी"
+      },
+      {
+        "id": "naraina-vihar",
+        "name": "Naraina Vihar",
+        "hindi": "नारायणा विहार"
+      },
+      {
+        "id": "delhi-cantt",
+        "name": "Delhi Cantt",
+        "hindi": "दिल्ली कैंट"
+      },
+      {
+        "id": "durgabai-deshmukh-south-campus",
+        "name": "Durgabai Deshmukh South Campus",
+        "hindi": "दुर्गाबाई देशमुख साउथ कैंपस"
+      },
+      {
+        "id": "sir-vishweshwaraiah-moti-bagh",
+        "name": "Sir M. Vishweshwaraiah Moti Bagh",
+        "hindi": "सर विश्वेश्वरैया मोती बाग"
+      },
+      {
+        "id": "bhikaji-cama-place",
+        "name": "Bhikaji Cama Place",
+        "hindi": "भीकाजी कामा प्लेस"
+      },
+      {
+        "id": "sarojini-nagar",
+        "name": "Sarojini Nagar",
+        "hindi": "सरोजिनी नगर"
+      },
+      {
+        "id": "dilli-haat-ina",
+        "name": "Dilli Haat - INA",
+        "hindi": "दिल्ली हाट - आईएनए"
+      },
+      {
+        "id": "south-extension",
+        "name": "South Extension",
+        "hindi": "साउथ एक्सटेंशन"
+      },
+      {
+        "id": "lajpat-nagar",
+        "name": "Lajpat Nagar",
+        "hindi": "लाजपत नगर"
+      },
+      {
+        "id": "vinobapuri",
+        "name": "Vinobapuri",
+        "hindi": "विनोबापुरी"
+      },
+      {
+        "id": "ashram",
+        "name": "Ashram",
+        "hindi": "आश्रम"
+      },
+      {
+        "id": "sarai-kale-khan-nizamuddin",
+        "name": "Sarai Kale Khan - Hazrat Nizamuddin",
+        "hindi": "सराय काले खां - हज़रत निज़ामुद्दीन"
+      },
+      {
+        "id": "mayur-vihar-1",
+        "name": "Mayur Vihar-I",
+        "hindi": "मयूर विहार-1"
+      },
+      {
+        "id": "mayur-vihar-pocket-1",
+        "name": "Mayur Vihar Pocket-1",
+        "hindi": "मयूर विहार पॉकेट-1"
+      },
+      {
+        "id": "trilokpuri-sanjay-lake",
+        "name": "Trilokpuri Sanjay Lake",
+        "hindi": "त्रिलोकपुरी संजय झील"
+      },
+      {
+        "id": "east-vinod-nagar",
+        "name": "East Vinod Nagar - Mayur Vihar-II",
+        "hindi": "पूर्वी विनोद नगर - मयूर विहार-II"
+      },
+      {
+        "id": "mandawali-west-vinod-nagar",
+        "name": "Mandawali - West Vinod Nagar",
+        "hindi": "मंडावली - वेस्ट विनोद नगर"
+      },
+      {
+        "id": "ip-extension",
+        "name": "IP Extension",
+        "hindi": "आईपी ​​एक्सटेंशन"
+      },
+      {
+        "id": "anand-vihar",
+        "name": "Anand Vihar ISBT",
+        "hindi": "आनंद विहार आईएसबीटी"
+      },
+      {
+        "id": "karkarduma",
+        "name": "Karkarduma",
+        "hindi": "कड़कड़डूमा"
+      },
+      {
+        "id": "karkarduma-court",
+        "name": "Karkarduma Court",
+        "hindi": "कड़कड़डूमा कोर्ट"
+      },
+      {
+        "id": "krishna-nagar",
+        "name": "Krishna Nagar",
+        "hindi": "कृष्णा नगर"
+      },
+      {
+        "id": "east-azad-nagar",
+        "name": "East Azad Nagar",
+        "hindi": "ईस्ट आजाद नगर"
+      },
+      {
+        "id": "welcome",
+        "name": "Welcome",
+        "hindi": "वेलकम"
+      },
+      {
+        "id": "jaffrabad",
+        "name": "Jaffrabad",
+        "hindi": "जाफराबाद"
+      },
+      {
+        "id": "maujpur-babarpur",
+        "name": "Maujpur - Babarpur",
+        "hindi": "मौजपुर - बाबरपुर"
+      },
+      {
+        "id": "gokulpuri",
+        "name": "Gokulpuri",
+        "hindi": "गोकुलपुरी"
+      },
+      {
+        "id": "johri-enclave",
+        "name": "Johri Enclave",
+        "hindi": "जौहरी एन्क्लेव"
+      },
+      {
+        "id": "shiv-vihar",
+        "name": "Shiv Vihar",
+        "hindi": "शिव विहार"
+      }
     ]
   },
   "magenta": {
     "id": "magenta",
     "name": "Magenta Line",
-    "color": "#EC4899",
-    "bgGradient": "from-pink-500/20 via-pink-950/40 to-slate-950",
-    "borderColor": "border-pink-500",
-    "textColor": "text-pink-400",
-    "accentColor": "#EC4899",
+    "color": "#B7295A",
     "stations": [
-      { "id": "janakpuri-west", "name": "Janakpuri West", "hindi": "जनकपुरी पश्चिम", "x": 240, "y": 760 },
-      { "id": "dabri-mor", "name": "Dabri Mor", "hindi": "डाबरी मोड़", "x": 260, "y": 820 },
-      { "id": "dashrath-puri", "name": "Dashrath Puri", "hindi": "दशरथ पुरी", "x": 280, "y": 860 },
-      { "id": "palam", "name": "Palam", "hindi": "पालम", "x": 300, "y": 900 },
-      { "id": "sadaar-bazar-cantt", "name": "Sadar Bazar Cantt", "hindi": "सदर बाजार कैंट", "x": 330, "y": 940 },
-      { "id": "igi-airport-t1", "name": "Terminal 1 IGI Airport", "hindi": "टर्मिनल 1 आईजीआई एयरपोर्ट", "x": 360, "y": 980 },
-      { "id": "shankar-vihar", "name": "Shankar Vihar", "hindi": "शंकर विहार", "x": 390, "y": 1020 },
-      { "id": "vasant-vihar", "name": "Vasant Vihar", "hindi": "वसंत विहार", "x": 420, "y": 1060 },
-      { "id": "munirka", "name": "Munirka", "hindi": "मुनीरका", "x": 450, "y": 1100 },
-      { "id": "rk-puram", "name": "RK Puram", "hindi": "आर के पुरम", "x": 480, "y": 1120 },
-      { "id": "iit-delhi", "name": "IIT", "hindi": "आईआईटी", "x": 510, "y": 1135 },
-      { "id": "hauz-khas", "name": "Hauz Khas", "hindi": "हौज खास", "x": 540, "y": 1150 },
-      { "id": "panchsheel-park", "name": "Panchsheel Park", "hindi": "पंचशील पार्क", "x": 570, "y": 1160 },
-      { "id": "chirag-delhi", "name": "Chirag Delhi", "hindi": "चिराग दिल्ली", "x": 600, "y": 1170 },
-      { "id": "greater-kailash", "name": "Greater Kailash", "hindi": "ग्रेटर कैलाश", "x": 630, "y": 1180 },
-      { "id": "nehru-enclave", "name": "Nehru Enclave", "hindi": "नेहरू एन्क्लेव", "x": 660, "y": 1190 },
-      { "id": "kalkaji-mandir", "name": "Kalkaji Mandir", "hindi": "कालकाजी मंदिर", "x": 690, "y": 1200 },
-      { "id": "okhla-nsic", "name": "Okhla NSIC", "hindi": "ओखला एनएसआईसी", "x": 730, "y": 1170 },
-      { "id": "sukhdev-vihar", "name": "Sukhdev Vihar", "hindi": "सुखदेव विहार", "x": 760, "y": 1130 },
-      { "id": "jamia-millia-islamia", "name": "Jamia Millia Islamia", "hindi": "जामिया मिलिया इस्लामिया", "x": 790, "y": 1090 },
-      { "id": "okhla-vihar", "name": "Okhla Vihar", "hindi": "ओखला विहार", "x": 820, "y": 1050 },
-      { "id": "jasola-vihar", "name": "Jasola Vihar Shaheen Bagh", "hindi": "जसोला विहार शाहीन बाग", "x": 850, "y": 1010 },
-      { "id": "kalindi-kunj", "name": "Kalindi Kunj", "hindi": "कालिंदी कुंज", "x": 880, "y": 970 },
-      { "id": "okhla-bird-sanctuary", "name": "Okhla Bird Sanctuary", "hindi": "ओखला बर्ड सेंचुरी", "x": 920, "y": 930 },
-      { "id": "botanical-garden", "name": "Botanical Garden", "hindi": "बोटैनिकल गार्डन", "x": 960, "y": 890 }
+      {
+        "id": "janakpuri-west",
+        "name": "Janakpuri West",
+        "hindi": "जनकपुरी पश्चिम"
+      },
+      {
+        "id": "dabri-mor",
+        "name": "Dabri Mor - Janakpuri South",
+        "hindi": "डाबरी मोड़ - जनकपुरी दक्षिण"
+      },
+      {
+        "id": "dashrath-puri",
+        "name": "Dashrath Puri",
+        "hindi": "दशरथ पुरी"
+      },
+      {
+        "id": "palam",
+        "name": "Palam",
+        "hindi": "पालम"
+      },
+      {
+        "id": "sadaar-bazar-cantt",
+        "name": "Sadar Bazar Cantt",
+        "hindi": "सदर बाजार कैंट"
+      },
+      {
+        "id": "terminal-1-igi-airport",
+        "name": "Terminal 1 IGI Airport",
+        "hindi": "टर्मिनल 1 आईजीआई एयरपोर्ट"
+      },
+      {
+        "id": "shankar-vihar",
+        "name": "Shankar Vihar",
+        "hindi": "शंकर विहार"
+      },
+      {
+        "id": "vasant-vihar",
+        "name": "Vasant Vihar",
+        "hindi": "वसंत विहार"
+      },
+      {
+        "id": "munirka",
+        "name": "Munirka",
+        "hindi": "मुनीरका"
+      },
+      {
+        "id": "rk-puram",
+        "name": "RK Puram",
+        "hindi": "आर के पुरम"
+      },
+      {
+        "id": "iit-delhi",
+        "name": "IIT Delhi",
+        "hindi": "आईआईटी दिल्ली"
+      },
+      {
+        "id": "hauz-khas",
+        "name": "Hauz Khas",
+        "hindi": "हौज खास"
+      },
+      {
+        "id": "panchsheel-park",
+        "name": "Panchsheel Park",
+        "hindi": "पंचशील पार्क"
+      },
+      {
+        "id": "chirag-delhi",
+        "name": "Chirag Delhi",
+        "hindi": "चिराग दिल्ली"
+      },
+      {
+        "id": "greater-kailash",
+        "name": "Greater Kailash",
+        "hindi": "ग्रेटर कैलाश"
+      },
+      {
+        "id": "nehru-enclave",
+        "name": "Nehru Enclave",
+        "hindi": "नेहरू एन्क्लेव"
+      },
+      {
+        "id": "kalkaji-mandir",
+        "name": "Kalkaji Mandir",
+        "hindi": "कालकाजी मंदिर"
+      },
+      {
+        "id": "okhla-nsic",
+        "name": "Okhla NSIC",
+        "hindi": "ओखला एनएसआईसी"
+      },
+      {
+        "id": "sukhdev-vihar",
+        "name": "Sukhdev Vihar",
+        "hindi": "सुखदेव विहार"
+      },
+      {
+        "id": "jamia-millia-islamia",
+        "name": "Jamia Millia Islamia",
+        "hindi": "जामिया मिलिया इस्लामिया"
+      },
+      {
+        "id": "okhla-vihar",
+        "name": "Okhla Vihar",
+        "hindi": "ओखला विहार"
+      },
+      {
+        "id": "jasola-vihar",
+        "name": "Jasola Vihar Shaheen Bagh",
+        "hindi": "जसोला विहार शाहीन बाग"
+      },
+      {
+        "id": "kalindi-kunj",
+        "name": "Kalindi Kunj",
+        "hindi": "कालिंदी कुंज"
+      },
+      {
+        "id": "okhla-bird-sanctuary",
+        "name": "Okhla Bird Sanctuary",
+        "hindi": "ओखला पक्षी अभयारण्य"
+      },
+      {
+        "id": "botanical-garden",
+        "name": "Botanical Garden",
+        "hindi": "बॉटनिकल गार्डन"
+      }
+    ]
+  },
+  "grey": {
+    "id": "grey",
+    "name": "Grey Line",
+    "color": "#808285",
+    "stations": [
+      {
+        "id": "dwarka",
+        "name": "Dwarka",
+        "hindi": "द्वारका"
+      },
+      {
+        "id": "nangli",
+        "name": "Nangli",
+        "hindi": "नांगली"
+      },
+      {
+        "id": "najafgarh",
+        "name": "Najafgarh",
+        "hindi": "नजफगढ़"
+      },
+      {
+        "id": "dhansa-bus-stand",
+        "name": "Dhansa Bus Stand",
+        "hindi": "ढांसा बस स्टैंड"
+      }
+    ]
+  },
+  "orange": {
+    "id": "orange",
+    "name": "Airport Express (Orange Line)",
+    "color": "#E65A15",
+    "stations": [
+      {
+        "id": "new-delhi",
+        "name": "New Delhi",
+        "hindi": "नई दिल्ली"
+      },
+      {
+        "id": "shivaji-stadium",
+        "name": "Shivaji Stadium",
+        "hindi": "शिवाजी स्टेडियम"
+      },
+      {
+        "id": "dhaula-kuan",
+        "name": "Dhaula Kuan",
+        "hindi": "धौला कुआँ"
+      },
+      {
+        "id": "delhi-aerocity",
+        "name": "Delhi Aerocity",
+        "hindi": "दिल्ली एयरोसिटी"
+      },
+      {
+        "id": "igi-airport-t3",
+        "name": "Airport (Terminal 3)",
+        "hindi": "हवाई अड्डा (टर्मिनल 3)"
+      },
+      {
+        "id": "dwarka-sec-21",
+        "name": "Dwarka Sector 21",
+        "hindi": "द्वारका सेक्टर 21"
+      },
+      {
+        "id": "yashobhoomi-dwarka-sec-25",
+        "name": "Yashobhoomi Dwarka Sector 25",
+        "hindi": "यशोभूमि द्वारका सेक्टर 25"
+      }
+    ]
+  },
+  "aqua": {
+    "id": "aqua",
+    "name": "Aqua Line (NMRC)",
+    "color": "#00A3AD",
+    "stations": [
+      {
+        "id": "noida-sec-51",
+        "name": "Noida Sector 51",
+        "hindi": "नोएडा सेक्टर 51"
+      },
+      {
+        "id": "noida-sec-50",
+        "name": "Noida Sector 50",
+        "hindi": "नोएडा सेक्टर 50"
+      },
+      {
+        "id": "noida-sec-76",
+        "name": "Noida Sector 76",
+        "hindi": "नोएडा सेक्टर 76"
+      },
+      {
+        "id": "noida-sec-101",
+        "name": "Noida Sector 101",
+        "hindi": "नोएडा सेक्टर 101"
+      },
+      {
+        "id": "noida-sec-81",
+        "name": "Noida Sector 81",
+        "hindi": "नोएडा सेक्टर 81"
+      },
+      {
+        "id": "nsez",
+        "name": "NSEZ",
+        "hindi": "एनएसईजेड"
+      },
+      {
+        "id": "noida-sec-83",
+        "name": "Noida Sector 83",
+        "hindi": "नोएडा सेक्टर 83"
+      },
+      {
+        "id": "noida-sec-137",
+        "name": "Noida Sector 137",
+        "hindi": "नोएडा सेक्टर 137"
+      },
+      {
+        "id": "noida-sec-142",
+        "name": "Noida Sector 142",
+        "hindi": "नोएडा सेक्टर 142"
+      },
+      {
+        "id": "noida-sec-143",
+        "name": "Noida Sector 143",
+        "hindi": "नोएडा सेक्टर 143"
+      },
+      {
+        "id": "noida-sec-144",
+        "name": "Noida Sector 144",
+        "hindi": "नोएडा सेक्टर 144"
+      },
+      {
+        "id": "noida-sec-145",
+        "name": "Noida Sector 145",
+        "hindi": "नोएडा सेक्टर 145"
+      },
+      {
+        "id": "noida-sec-146",
+        "name": "Noida Sector 146",
+        "hindi": "नोएडा सेक्टर 146"
+      },
+      {
+        "id": "noida-sec-147",
+        "name": "Noida Sector 147",
+        "hindi": "नोएडा सेक्टर 147"
+      },
+      {
+        "id": "noida-sec-148",
+        "name": "Noida Sector 148",
+        "hindi": "नोएडा सेक्टर 148"
+      },
+      {
+        "id": "knowledge-park-2",
+        "name": "Knowledge Park II",
+        "hindi": "नॉलेज पार्क II"
+      },
+      {
+        "id": "pari-chowk",
+        "name": "Pari Chowk",
+        "hindi": "परी चौक"
+      },
+      {
+        "id": "alpha-1",
+        "name": "Alpha 1",
+        "hindi": "अल्फा 1"
+      },
+      {
+        "id": "delta-1",
+        "name": "Delta 1",
+        "hindi": "डेल्टा 1"
+      },
+      {
+        "id": "gnida-office",
+        "name": "GNIDA Office",
+        "hindi": "ग्रेनो प्राधिकरण कार्यालय"
+      },
+      {
+        "id": "depot-station",
+        "name": "Depot Station",
+        "hindi": "डिपो स्टेशन"
+      }
     ]
   }
 }
