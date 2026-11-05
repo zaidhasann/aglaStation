@@ -4,6 +4,7 @@ export interface Station {
   id: string;
   name: string;
   hindi?: string;
+  interstationSec?: number; // Travel time from this station to the next in seconds (default 120s)
   x?: number;
   y?: number;
 }
@@ -29,6 +30,7 @@ export interface Track {
   license?: string;
   attributionText?: string;
   sourceUrl?: string;
+  isLiveStream?: boolean;
 }
 
 export interface UserProfile {
@@ -54,6 +56,7 @@ export interface RoomStatePayload {
   serverTime: number; // Server current epoch ms
   listenersCount: number;
   stationCounts: Record<string, number>;
+  interstationSec?: number;
 }
 
 export interface RoomResyncPayload {
@@ -61,6 +64,7 @@ export interface RoomResyncPayload {
   track: Track;
   startedAt: number;
   serverTime: number;
+  interstationSec?: number;
 }
 
 export interface StationAdvancePayload {
@@ -70,6 +74,7 @@ export interface StationAdvancePayload {
   track: Track;
   startedAt: number;
   serverTime: number;
+  interstationSec?: number;
 }
 
 export interface PresenceRider {
@@ -79,7 +84,7 @@ export interface PresenceRider {
 
 export interface PresenceUpdatePayload {
   listenersCount: number;
-  stationCounts: Record<string, number>; // Station ID -> count of riders leaving here
+  stationCounts: Record<string, number>; // Station ID -> count of riders getting off here
   riders: PresenceRider[];
 }
 

@@ -49,6 +49,19 @@ export function setupSocketHandlers(
       track: room.track,
       startedAt: room.startedAt,
       serverTime,
+      interstationSec: room.interstationSec,
+    });
+  });
+
+  // Hook fallback track substitution callback
+  roomManager.setOnTrackFallback((room, fallbackTrack) => {
+    const serverTime = Date.now();
+    io.to(room.roomId).emit(SOCKET_EVENTS.ROOM_RESYNC, {
+      stationIndex: room.stationIndex,
+      track: fallbackTrack,
+      startedAt: room.startedAt,
+      serverTime,
+      interstationSec: room.interstationSec,
     });
   });
 
@@ -170,6 +183,7 @@ export function setupSocketHandlers(
         serverTime,
         listenersCount: presence.listenersCount,
         stationCounts: presence.stationCounts,
+        interstationSec: room.interstationSec,
       });
 
       // Broadcast sanitized presence update to everyone in room
@@ -195,11 +209,23 @@ export function setupSocketHandlers(
           track: room.track,
           startedAt: room.startedAt,
           serverTime: Date.now(),
+          interstationSec: room.interstationSec,
         });
       }
     });
 
-    // 6. Manual station advance: STRICTLY gated behind ENABLE_DEV_TOOLS
+    // 6. Track Error Reporting from Client (Automatic Fallback Trigger)
+    socket.on(SOCKET_EVENTS.TRACK_ERROR, (payload: { sourceId?: string; error?: string }) => {
+      const rider = presenceService.getRiderBySocket(socketId);
+      const roomId = rider?.roomId;
+      if (!roomId) return;
+
+      const presence = presenceService.getRoomPresence(roomId);
+      console.warn(`[SOCKET] Track error reported by rider ${rider.publicId} in ${roomId}: ${payload?.error || payload?.sourceId}`);
+      roomManager.reportTrackError(roomId, rider.publicId, presence.listenersCount);
+    });
+
+    // 7. Manual station advance: STRICTLY gated behind ENABLE_DEV_TOOLS
     socket.on(SOCKET_EVENTS.STATION_ADVANCE_MANUAL, () => {
       if (!CONFIG.ENABLE_DEV_TOOLS) {
         console.warn(`[DEV_GATE] Blocked manual station advance attempt from socket ${socketId}`);
