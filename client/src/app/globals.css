@@ -1,0 +1,96 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Google Fonts: Noto Sans with Devanagari + Latin & Barlow Semi Condensed (Mozer Style) ─── */
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@600;700;800;900&family=Noto+Sans:ital,wght@0,300;0,400;0,600;0,700;0,900;1,400&family=Noto+Sans+Devanagari:wght@400;600;700;900&display=swap');
+
+/* Brand / Mozer Font Definition */
+@font-face {
+  font-family: 'Mozer';
+  src: local('Mozer Bold'), local('Mozer-Bold'), local('Mozer'),
+       url('/fonts/Mozer-Bold.woff2') format('woff2'),
+       url('/fonts/Mozer-Bold.woff') format('woff'),
+       url('/fonts/Mozer-Bold.ttf') format('truetype');
+  font-weight: 700 900;
+  font-display: swap;
+}
+
+.font-brand {
+  font-family: 'Mozer', 'Barlow Semi Condensed', 'Noto Sans', sans-serif;
+  letter-spacing: -0.02em;
+}
+
+:root {
+  --background: #0A0A0A;
+  --surface: #111111;
+  --border: #2A2A2A;
+  --text: #E8E8E8;
+  --text-dim: #666666;
+  /* Dynamic line colour — overridden per line */
+  --line: #F5C518;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  color: var(--text);
+  background: var(--background);
+  font-family: 'Noto Sans', system-ui, sans-serif;
+  font-variant-numeric: tabular-nums;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+  min-height: 100dvh;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+  padding-left: env(safe-area-inset-left, 0px);
+  padding-right: env(safe-area-inset-right, 0px);
+}
+
+/* Devanagari text helper */
+.font-devanagari {
+  font-family: 'Noto Sans Devanagari', 'Noto Sans', sans-serif;
+}
+
+/* Station strip track line */
+.strip-track {
+  width: 2px;
+  background: var(--line);
+  opacity: 0.7;
+}
+
+/* Active station dot */
+.station-dot-active {
+  background: var(--line);
+  outline: 3px solid var(--line);
+  outline-offset: 2px;
+}
+
+/* Tap target safety */
+.tap-target {
+  min-height: 44px;
+  min-width: 44px;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Focus ring */
+:focus-visible {
+  outline: 2px solid var(--line);
+  outline-offset: 2px;
+  border-radius: 4px;
+}

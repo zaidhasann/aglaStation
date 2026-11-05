@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="180" height="180" viewBox="0 0 180 180">
+  <rect width="180" height="180" fill="#020617" rx="0"/>
+  <rect x="0" y="0" width="180" height="180" fill="#facc15" rx="32"/>
+  <text x="90" y="90" dominant-baseline="central" text-anchor="middle" font-family="system-ui, sans-serif" font-weight="900" font-size="99" fill="#020617">N</text>
+</svg>
