@@ -13,6 +13,9 @@ export const SOCKET_EVENTS = {
   STATION_ADVANCE_MANUAL: 'station:advance_manual',
   TRACK_ERROR: 'track:error',
 
+  // Sponsors & Engagement
+  SPONSOR_EVENT: 'sponsor:event',
+
   // Presence & Identity
   PRESENCE_UPDATE: 'presence:update',
   PROFILE_SET_NAME: 'profile:setName',

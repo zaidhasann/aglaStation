@@ -215,6 +215,11 @@ export class ChatService {
     return sanitizeInput(text, CONFIG.MAX_MESSAGE_LENGTH);
   }
 
+  public filterName(name: string): string {
+    const { cleanText } = sanitizeInput(name, 24);
+    return cleanText || 'Rider';
+  }
+
   /**
    * Cleans up on user disconnect.
    * Returns list of ended sessions with partner socket IDs to notify ONLY the specific partner.

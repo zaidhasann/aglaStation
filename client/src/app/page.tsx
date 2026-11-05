@@ -13,6 +13,7 @@ import { InstallPrompt } from '@/components/pwa/InstallPrompt';
 import { ChatDrawer } from '@/components/chat/ChatDrawer';
 import { ChatRequestModal } from '@/components/chat/ChatRequestModal';
 import { useChat } from '@/hooks/useChat';
+import { SponsorCard } from '@/components/sponsor/SponsorCard';
 import { ArrowLeft, Train, MapPin } from 'lucide-react';
 import { getLineTheme } from '@/lib/metroThemes';
 import allLinesData from '@/data/lines.json';
@@ -72,6 +73,8 @@ export default function Home() {
     stationIndex,
     listenersCount,
     stationCounts,
+    currentSponsor,
+    emitSponsorAction,
     computeTargetSeek,
     advanceStation,
     isConnected,
@@ -250,6 +253,13 @@ export default function Home() {
                 stationCounts={stationCounts}
               />
             )}
+
+            {/* Sponsored Station Offer Card */}
+            <SponsorCard
+              sponsor={currentSponsor}
+              accentColor={theme.hex}
+              onAction={emitSponsorAction}
+            />
           </div>
         )}
       </main>

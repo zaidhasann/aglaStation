@@ -1,0 +1,122 @@
+[
+  {
+    "id": "sp-cp-01",
+    "stationId": "rajiv-chowk",
+    "businessName": "Wenger's Deli",
+    "offerTextEn": "Show your metro token or app for 15% off fresh pastries and cold brew.",
+    "offerTextHi": "ताज़ा पेस्ट्री और कोल्ड ब्रू पर 15% की छूट के लिए अपना ऐप दिखाएं।",
+    "category": "Food & Bakery",
+    "address": "A-16, Connaught Place, Inner Circle, New Delhi",
+    "link": "https://wengersdeli.example.com",
+    "validFrom": "2026-01-01T00:00:00Z",
+    "validTo": "2027-12-31T23:59:59Z"
+  },
+  {
+    "id": "sp-cp-02",
+    "stationId": "rajiv-chowk",
+    "businessName": "Oxford Bookstore",
+    "offerTextEn": "Get a complimentary bookmark and 10% off bestselling paperbacks today.",
+    "offerTextHi": "बेस्टसेलर किताबों पर 10% की छूट और एक विशेष बुकमार्क मुफ्त पाएं।",
+    "category": "Books & Stationery",
+    "address": "N-81, Connaught Place, New Delhi",
+    "link": "https://oxfordbookstore.example.com",
+    "validFrom": "2026-01-01T00:00:00Z",
+    "validTo": "2027-12-31T23:59:59Z"
+  },
+  {
+    "id": "sp-hk-01",
+    "stationId": "hauz-khas",
+    "businessName": "Coast Cafe & Roastery",
+    "offerTextEn": "Grab 20% off Kerala prawn curry or artisanal pour-overs right outside Gate 2.",
+    "offerTextHi": "गेट 2 के बाहर केरल प्रॉन करी और आर्टिसनल कॉफी पर 20% छूट पाएं।",
+    "category": "Cafe & Dining",
+    "address": "H2 & H3, Hauz Khas Village, New Delhi",
+    "link": "https://coastcafe.example.com",
+    "validFrom": "2026-01-01T00:00:00Z",
+    "validTo": "2027-12-31T23:59:59Z"
+  },
+  {
+    "id": "sp-kg-01",
+    "stationId": "kashmere-gate",
+    "businessName": "Giani's Heritage Ice Cream",
+    "offerTextEn": "Free extra scoop with any Rabri Faluda dessert order.",
+    "offerTextHi": "किसी भी रबड़ी फालूदा ऑर्डर के साथ एक अतिरिक्त स्कूप मुफ्त।",
+    "category": "Desserts",
+    "address": "Church Mission Road, Fatehpuri, Kashmere Gate vicinity",
+    "link": "https://gianisicecream.example.com",
+    "validFrom": "2026-01-01T00:00:00Z",
+    "validTo": "2027-12-31T23:59:59Z"
+  },
+  {
+    "id": "sp-nd-01",
+    "stationId": "new-delhi",
+    "businessName": "TravelEase Luggage Cloakroom",
+    "offerTextEn": "Secure luggage storage for Delhi explorers. ₹50 flat discount for transit riders.",
+    "offerTextHi": "सुरक्षित लगेज लॉकर सुविधा। मेट्रो यात्रियों के लिए ₹50 की छूट।",
+    "category": "Travel Services",
+    "address": "Opposite Ajmeri Gate, New Delhi Railway Station Concourse",
+    "link": "https://travelease.example.com",
+    "validFrom": "2026-01-01T00:00:00Z",
+    "validTo": "2027-12-31T23:59:59Z"
+  },
+  {
+    "id": "sp-mcc-01",
+    "stationId": "millennium-city-centre",
+    "businessName": "Blue Tokai Coffee Roasters",
+    "offerTextEn": "Free cookie with every large iced latte on your morning sprint.",
+    "offerTextHi": "सुबह की यात्रा पर हर लार्ज आइस्ड लाटे के साथ एक कुकी मुफ्त।",
+    "category": "Cafe",
+    "address": "Ground Floor, Cyber Park, Sector 29, Gurugram",
+    "link": "https://bluetokai.example.com",
+    "validFrom": "2026-01-01T00:00:00Z",
+    "validTo": "2027-12-31T23:59:59Z"
+  },
+  {
+    "id": "sp-ina-01",
+    "stationId": "dilli-haat-ina",
+    "businessName": "Dilli Haat Crafts Pavilion",
+    "offerTextEn": "Express entry coupon for artisan handicraft stalls this weekend.",
+    "offerTextHi": "इस सप्ताहांत हस्तशिल्प स्टॉलों के लिए एक्सप्रेस एंट्री कूपन।",
+    "category": "Culture & Crafts",
+    "address": "Opposite INA Market, Sri Aurobindo Marg, New Delhi",
+    "link": "https://dillihaat.example.com",
+    "validFrom": "2026-01-01T00:00:00Z",
+    "validTo": "2027-12-31T23:59:59Z"
+  },
+  {
+    "id": "sp-ln-01",
+    "stationId": "lajpat-nagar",
+    "businessName": "Central Market Textiles & Tailors",
+    "offerTextEn": "Instant festive fabric alteration discount — 20% off all styling orders.",
+    "offerTextHi": "त्योहारी कपड़ों की सिलाई और फिटिंग पर 20% की विशेष छूट।",
+    "category": "Fashion & Tailoring",
+    "address": "Block J, Lajpat Nagar II, Central Market, New Delhi",
+    "link": "https://centralmarket.example.com",
+    "validFrom": "2026-01-01T00:00:00Z",
+    "validTo": "2027-12-31T23:59:59Z"
+  },
+  {
+    "id": "sp-aerocity-01",
+    "stationId": "delhi-aerocity",
+    "businessName": "Worldmark Transit Lounge",
+    "offerTextEn": "Quick coffee & high-speed Wi-Fi workstation pass at ₹199 for metro riders.",
+    "offerTextHi": "मेट्रो यात्रियों के लिए ₹199 में हाई-स्पीड वाई-फाई और कॉफी वर्कस्टेशन पास।",
+    "category": "Co-Working & Lounge",
+    "address": "Tower 2, Worldmark Aerocity, New Delhi",
+    "link": "https://worldmarklounge.example.com",
+    "validFrom": "2026-01-01T00:00:00Z",
+    "validTo": "2027-12-31T23:59:59Z"
+  },
+  {
+    "id": "sp-botanical-01",
+    "stationId": "botanical-garden",
+    "businessName": "The Tea Room Express",
+    "offerTextEn": "Buy 1 Get 1 on Kulhad Masala Chai & Bun Maska at Gate 1 concourse.",
+    "offerTextHi": "गेट 1 पर कुल्हड़ मसाला चाय और बन मस्का पर एक के साथ एक मुफ्त।",
+    "category": "Beverages",
+    "address": "Metro Concourse Walkway, Botanical Garden, Noida",
+    "link": "https://thetearoom.example.com",
+    "validFrom": "2026-01-01T00:00:00Z",
+    "validTo": "2027-12-31T23:59:59Z"
+  }
+]

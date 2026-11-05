@@ -12,10 +12,13 @@ import {
   ChatEndPayload,
   UserBlockPayload,
   UserReportPayload,
+  SponsorEventPayload,
 } from 'agla-station-shared';
 import { RoomManager } from '../services/roomManager';
 import { PresenceService } from '../services/presenceService';
 import { ChatService } from '../services/chatService';
+import { sponsorService } from '../services/sponsorService';
+import { analyticsStore } from '../services/analyticsStore';
 import { CONFIG } from '../config';
 
 // Track connection and join rate-limiting per IP
@@ -42,6 +45,8 @@ export function setupSocketHandlers(
   // Hook station advancement callback to broadcast to rooms
   roomManager.setOnAdvance((room, currentStation, nextStation) => {
     const serverTime = Date.now();
+    const sponsor = sponsorService.getSponsorForStation(currentStation.id);
+
     io.to(room.roomId).emit(SOCKET_EVENTS.STATION_ADVANCE, {
       stationIndex: room.stationIndex,
       currentStation,
@@ -50,18 +55,26 @@ export function setupSocketHandlers(
       startedAt: room.startedAt,
       serverTime,
       interstationSec: room.interstationSec,
+      sponsor,
     });
+
+    // Record presence analytics by line and current hour
+    analyticsStore.recordListenerPresence(room.lineId);
   });
 
   // Hook fallback track substitution callback
   roomManager.setOnTrackFallback((room, fallbackTrack) => {
     const serverTime = Date.now();
+    const { currentStation } = roomManager.getRoomStationDetails(room);
+    const sponsor = sponsorService.getSponsorForStation(currentStation.id);
+
     io.to(room.roomId).emit(SOCKET_EVENTS.ROOM_RESYNC, {
       stationIndex: room.stationIndex,
       track: fallbackTrack,
       startedAt: room.startedAt,
       serverTime,
       interstationSec: room.interstationSec,
+      sponsor,
     });
   });
 
@@ -78,26 +91,35 @@ export function setupSocketHandlers(
     }
 
     // Register user profile with opaque public ID
-    const internalUser = presenceService.registerUser(socketId);
-    console.log(`[SOCKET] User connected: publicId=${internalUser.publicId} (socket=${socketId}) from ${clientIp}`);
+    const initialName = `Rider ${socketId.substring(0, 4).toUpperCase()}`;
+    presenceService.registerUser(socketId, initialName);
 
-    // Helper: leave current room cleanly
+    // Track join timestamp for aggregate ride duration tracking
+    let rideJoinedAt: number | null = null;
+
+    // Helper: leave current room safely
     const performRoomLeave = () => {
       const rider = presenceService.getRiderBySocket(socketId);
-      const oldRoomId = rider?.roomId;
-      if (oldRoomId) {
+      if (rider && rider.roomId) {
+        const oldRoomId = rider.roomId;
         socket.leave(oldRoomId);
         presenceService.leaveRoom(socketId);
 
-        const presence = presenceService.getRoomPresence(oldRoomId);
-        io.to(oldRoomId).emit(SOCKET_EVENTS.PRESENCE_UPDATE, presence);
-        roomManager.removeRoomIfEmpty(oldRoomId, presence.listenersCount);
-        console.log(`[ROOM] User ${rider?.publicId} left room ${oldRoomId}. New count: ${presence.listenersCount}`);
+        // Record ride duration
+        if (rideJoinedAt) {
+          const durationSec = Math.round((Date.now() - rideJoinedAt) / 1000);
+          analyticsStore.recordRideDuration(durationSec);
+          rideJoinedAt = null;
+        }
+
+        const oldPresence = presenceService.getRoomPresence(oldRoomId);
+        io.to(oldRoomId).emit(SOCKET_EVENTS.PRESENCE_UPDATE, oldPresence);
+        roomManager.removeRoomIfEmpty(oldRoomId, oldPresence.listenersCount);
+        console.log(`[ROOM_LEAVE] Rider ${rider.publicId} left ${oldRoomId} (Remaining: ${oldPresence.listenersCount})`);
       }
-      return oldRoomId;
     };
 
-    // 1. Time sync (NTP-style ping/pong)
+    // 1. High-precision Time Sync (NTP-style ping/pong)
     socket.on(SOCKET_EVENTS.TIME_PING, (payload: TimePingPayload) => {
       const serverTime = Date.now();
       const response: TimePongPayload = {
@@ -107,27 +129,27 @@ export function setupSocketHandlers(
       socket.emit(SOCKET_EVENTS.TIME_PONG, response);
     });
 
-    // 2. Profile set name
+    // 2. Profile name change (moderated)
     socket.on(SOCKET_EVENTS.PROFILE_SET_NAME, ({ name }: { name: string }) => {
-      const cleanName = presenceService.updateUserName(socketId, name);
-      if (cleanName) {
-        const rider = presenceService.getRiderBySocket(socketId);
-        if (rider && rider.roomId) {
-          const roomId = rider.roomId;
-          io.to(roomId).emit(SOCKET_EVENTS.PRESENCE_UPDATE, presenceService.getRoomPresence(roomId));
-        }
-      } else {
-        socket.emit('error:notice', { message: 'Name contains disallowed terms or is invalid.' });
+      const sanitized = chatService.filterName(name);
+      presenceService.updateUserName(socketId, sanitized);
+      const rider = presenceService.getRiderBySocket(socketId);
+      if (rider && rider.roomId) {
+        const presence = presenceService.getRoomPresence(rider.roomId);
+        io.to(rider.roomId).emit(SOCKET_EVENTS.PRESENCE_UPDATE, presence);
       }
     });
 
-    // 3. Room Join with full validation
+    // 3. Room Join with validation
     socket.on(SOCKET_EVENTS.ROOM_JOIN, (payload: JoinRoomPayload) => {
-      if (!payload) return;
+      if (!payload || !payload.lineId || !payload.direction || !payload.startStationId || !payload.destStationId) {
+        socket.emit('error:notice', { message: 'Incomplete ride selection parameters.' });
+        return;
+      }
 
-      // Rate limit room joins
-      if (!checkIpRateLimit(clientIp, joinAttempts, CONFIG.RATE_LIMIT_JOINS_MAX, CONFIG.RATE_LIMIT_JOINS_WINDOW_MS)) {
-        socket.emit('error:notice', { message: 'Joining rooms too frequently. Please wait a moment.' });
+      if (!checkIpRateLimit(clientIp, joinAttempts, 20, 60000)) {
+        console.warn(`[SOCKET] Rate limit exceeded on room join for IP: ${clientIp}`);
+        socket.emit('error:notice', { message: 'Too many station switches. Please wait a moment.' });
         return;
       }
 
@@ -140,12 +162,12 @@ export function setupSocketHandlers(
       });
 
       if (!validation.isValid) {
-        console.warn(`[ROOM_JOIN] Rejected invalid join from socket ${socketId}: ${validation.error}`);
-        socket.emit('error:notice', { message: validation.error || 'Invalid train route specified.' });
+        console.warn(`[VALIDATION_FAILED] ${validation.error} from ${clientIp}`);
+        socket.emit('error:notice', { message: validation.error || 'Invalid train line or station selection.' });
         return;
       }
 
-      // Cleanly leave existing room if already joined
+      // Leave existing room if switching
       performRoomLeave();
 
       const roomId = RoomManager.getRoomId(payload.lineId, payload.direction);
@@ -157,6 +179,7 @@ export function setupSocketHandlers(
 
       // Join socket room
       socket.join(roomId);
+      rideJoinedAt = Date.now();
 
       // Update presence
       if (payload.name) {
@@ -167,6 +190,10 @@ export function setupSocketHandlers(
       const { currentStation, nextStation } = roomManager.getRoomStationDetails(room);
       const presence = presenceService.getRoomPresence(roomId);
       const serverTime = Date.now();
+      const sponsor = sponsorService.getSponsorForStation(currentStation.id);
+
+      // Record active listener
+      analyticsStore.recordListenerPresence(room.lineId);
 
       // Emit complete initial room state to joining client
       socket.emit(SOCKET_EVENTS.ROOM_STATE, {
@@ -184,6 +211,7 @@ export function setupSocketHandlers(
         listenersCount: presence.listenersCount,
         stationCounts: presence.stationCounts,
         interstationSec: room.interstationSec,
+        sponsor,
       });
 
       // Broadcast sanitized presence update to everyone in room
@@ -204,12 +232,16 @@ export function setupSocketHandlers(
 
       const room = roomManager.getRoom(roomId);
       if (room) {
+        const { currentStation } = roomManager.getRoomStationDetails(room);
+        const sponsor = sponsorService.getSponsorForStation(currentStation.id);
+
         socket.emit(SOCKET_EVENTS.ROOM_RESYNC, {
           stationIndex: room.stationIndex,
           track: room.track,
           startedAt: room.startedAt,
           serverTime: Date.now(),
           interstationSec: room.interstationSec,
+          sponsor,
         });
       }
     });
@@ -225,7 +257,14 @@ export function setupSocketHandlers(
       roomManager.reportTrackError(roomId, rider.publicId, presence.listenersCount);
     });
 
-    // 7. Manual station advance: STRICTLY gated behind ENABLE_DEV_TOOLS
+    // 7. Sponsor Engagement Events (aggregate analytics only)
+    socket.on(SOCKET_EVENTS.SPONSOR_EVENT, (payload: SponsorEventPayload) => {
+      if (payload && payload.sponsorId && payload.stationId && payload.action) {
+        analyticsStore.recordSponsorAction(payload.sponsorId, payload.stationId, payload.action);
+      }
+    });
+
+    // 8. Manual station advance: STRICTLY gated behind ENABLE_DEV_TOOLS
     socket.on(SOCKET_EVENTS.STATION_ADVANCE_MANUAL, () => {
       if (!CONFIG.ENABLE_DEV_TOOLS) {
         console.warn(`[DEV_GATE] Blocked manual station advance attempt from socket ${socketId}`);
@@ -241,7 +280,7 @@ export function setupSocketHandlers(
       }
     });
 
-    // 7. Chat Flow with Opaque Public IDs & Verification
+    // 9. Chat Flow with Opaque Public IDs & Verification
     socket.on(SOCKET_EVENTS.CHAT_REQUEST, ({ toUserId }: { toUserId: string }) => {
       const fromRider = presenceService.getRiderBySocket(socketId);
       if (!fromRider || !fromRider.roomId) return;
@@ -268,6 +307,9 @@ export function setupSocketHandlers(
         return;
       }
 
+      // Record aggregate sent metric
+      analyticsStore.recordChatRequestSent();
+
       // Notify target user via socket using opaque fromUserId
       io.to(toSocketId).emit(SOCKET_EVENTS.CHAT_REQUEST, {
         requestId: result.requestId,
@@ -284,6 +326,9 @@ export function setupSocketHandlers(
         socket.emit('chat:error', { error: result.error });
         return;
       }
+
+      // Record aggregate accepted metric
+      analyticsStore.recordChatRequestAccepted();
 
       // Notify only the two participants
       const payload: ChatAcceptPayload = { requestId, chatId: result.chatId };
@@ -372,8 +417,15 @@ export function setupSocketHandlers(
       }
     });
 
-    // 8. Disconnect handling: Scoped notifications only! Never io.emit!
+    // 10. Disconnect handling: Scoped notifications only! Never io.emit!
     socket.on('disconnect', () => {
+      // Record ride duration if active
+      if (rideJoinedAt) {
+        const durationSec = Math.round((Date.now() - rideJoinedAt) / 1000);
+        analyticsStore.recordRideDuration(durationSec);
+        rideJoinedAt = null;
+      }
+
       // End active chats and notify ONLY the other participant
       const endedChats = chatService.handleDisconnect(socketId);
       for (const item of endedChats) {

@@ -11,6 +11,7 @@ import {
   Track,
   Station,
   Direction,
+  Sponsor,
 } from 'agla-station-shared';
 
 export interface UseSyncOptions {
@@ -35,6 +36,7 @@ export function useSync(options: UseSyncOptions) {
   const [stationCounts, setStationCounts] = useState<Record<string, number>>({});
   const [hasJoined, setHasJoined] = useState(false);
   const [isDestinationReached, setIsDestinationReached] = useState(false);
+  const [currentSponsor, setCurrentSponsor] = useState<Sponsor | null>(null);
 
   // Reference to track epoch startedAt to avoid stale state in timers
   const startedAtRef = useRef<number>(0);
@@ -48,12 +50,27 @@ export function useSync(options: UseSyncOptions) {
     const startOffset = trackRef.current?.startOffsetSec || 0;
     const playWindow = trackRef.current?.playSec || trackRef.current?.durationSec || 120;
 
-    // Sliced playback within segment window
-    const positionInWindow = elapsedSec % playWindow;
-    return startOffset + positionInWindow;
+    // Loop cleanly within segment if track is shorter than interstation interval
+    return startOffset + (elapsedSec % playWindow);
   }, [getServerNow]);
 
-  // Join room when connected
+  const { destStationId, onDestinationReached } = options;
+
+  // Check destination arrival
+  const checkDestination = useCallback(
+    (station: Station | null) => {
+      if (!station || !destStationId) return;
+      if (station.id === destStationId) {
+        setIsDestinationReached(true);
+        if (onDestinationReached) {
+          onDestinationReached(station);
+        }
+      }
+    },
+    [destStationId, onDestinationReached]
+  );
+
+  // Join room on mount or config change
   useEffect(() => {
     if (!socket || !isConnected) return;
 
@@ -65,18 +82,14 @@ export function useSync(options: UseSyncOptions) {
       name: options.userName,
     });
     setHasJoined(true);
-    setIsDestinationReached(false);
-  }, [socket, isConnected, options.lineId, options.direction, options.startStationId, options.destStationId, options.userName]);
 
-  // Check destination arrival
-  const checkDestination = useCallback((station: Station | null) => {
-    if (station && options.destStationId && station.id === options.destStationId) {
-      setIsDestinationReached(true);
-      if (options.onDestinationReached) {
-        options.onDestinationReached(station);
+    return () => {
+      if (socket.connected) {
+        socket.emit(SOCKET_EVENTS.ROOM_LEAVE);
       }
-    }
-  }, [options.destStationId, options.onDestinationReached]);
+      setHasJoined(false);
+    };
+  }, [socket, isConnected, options.lineId, options.direction, options.startStationId, options.destStationId, options.userName]);
 
   // Listen for room updates
   useEffect(() => {
@@ -90,6 +103,7 @@ export function useSync(options: UseSyncOptions) {
       setTrack(state.track);
       setListenersCount(state.listenersCount);
       setStationCounts(state.stationCounts);
+      setCurrentSponsor(state.sponsor || null);
       if (state.interstationSec) setInterstationSec(state.interstationSec);
       startedAtRef.current = state.startedAt;
       trackRef.current = state.track;
@@ -102,6 +116,7 @@ export function useSync(options: UseSyncOptions) {
       setCurrentStation(advance.currentStation);
       setNextStation(advance.nextStation);
       setTrack(advance.track);
+      setCurrentSponsor(advance.sponsor || null);
       if (advance.interstationSec) setInterstationSec(advance.interstationSec);
       startedAtRef.current = advance.startedAt;
       trackRef.current = advance.track;
@@ -116,6 +131,7 @@ export function useSync(options: UseSyncOptions) {
     const handleRoomResync = (resync: RoomResyncPayload) => {
       setStationIndex(resync.stationIndex);
       setTrack(resync.track);
+      if (resync.sponsor !== undefined) setCurrentSponsor(resync.sponsor);
       if (resync.interstationSec) setInterstationSec(resync.interstationSec);
       startedAtRef.current = resync.startedAt;
       trackRef.current = resync.track;
@@ -166,6 +182,16 @@ export function useSync(options: UseSyncOptions) {
     }
   }, [socket]);
 
+  // Track sponsor aggregate events
+  const emitSponsorAction = useCallback(
+    (sponsorId: string, stationId: string, action: 'impression' | 'dismiss' | 'tap') => {
+      if (socket && socket.connected) {
+        socket.emit(SOCKET_EVENTS.SPONSOR_EVENT, { sponsorId, stationId, action });
+      }
+    },
+    [socket]
+  );
+
   return {
     roomState,
     currentStation,
@@ -175,6 +201,8 @@ export function useSync(options: UseSyncOptions) {
     interstationSec,
     listenersCount,
     stationCounts,
+    currentSponsor,
+    emitSponsorAction,
     computeTargetSeek,
     advanceStation,
     reportTrackError,

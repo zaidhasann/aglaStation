@@ -46,6 +46,19 @@ export interface RoomInfo {
   direction: Direction;
 }
 
+export interface Sponsor {
+  id: string;
+  stationId: string;
+  businessName: string;
+  offerTextEn: string;
+  offerTextHi: string;
+  category: string;
+  address: string;
+  link: string;
+  validFrom: string; // ISO date string
+  validTo: string; // ISO date string
+}
+
 export interface RoomStatePayload {
   room: RoomInfo;
   stationIndex: number;
@@ -57,6 +70,7 @@ export interface RoomStatePayload {
   listenersCount: number;
   stationCounts: Record<string, number>;
   interstationSec?: number;
+  sponsor?: Sponsor | null;
 }
 
 export interface RoomResyncPayload {
@@ -65,6 +79,7 @@ export interface RoomResyncPayload {
   startedAt: number;
   serverTime: number;
   interstationSec?: number;
+  sponsor?: Sponsor | null;
 }
 
 export interface StationAdvancePayload {
@@ -75,6 +90,7 @@ export interface StationAdvancePayload {
   startedAt: number;
   serverTime: number;
   interstationSec?: number;
+  sponsor?: Sponsor | null;
 }
 
 export interface PresenceRider {
@@ -153,4 +169,11 @@ export interface TrackErrorPayload {
   stationId: string;
   lineId: string;
   error?: string;
+}
+
+// Sponsor Engagement Event Payload (aggregate only)
+export interface SponsorEventPayload {
+  sponsorId: string;
+  stationId: string;
+  action: 'impression' | 'dismiss' | 'tap';
 }

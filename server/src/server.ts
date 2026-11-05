@@ -52,6 +52,12 @@ export function createServer() {
     res.json(reportsStore.getReportsSummary());
   });
 
+  // Protected Admin Analytics Route (aggregate daily stats)
+  app.get('/admin/analytics', adminAuth, (_req: Request, res: Response) => {
+    const { analyticsStore } = require('./services/analyticsStore');
+    res.json(analyticsStore.getDailyStats());
+  });
+
   const httpServer = http.createServer(app);
 
   const io = new Server(httpServer, {
