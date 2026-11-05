@@ -12,10 +12,6 @@ export interface MetroLine {
   id: string;
   name: string;
   color: string;
-  bgGradient?: string;
-  borderColor?: string;
-  textColor?: string;
-  accentColor?: string;
   stations: Station[];
 }
 
@@ -26,7 +22,13 @@ export interface Track {
   provider: TrackProvider;
   sourceId: string;
   title?: string;
+  artist?: string;
   durationSec?: number;
+  startOffsetSec?: number;
+  playSec?: number;
+  license?: string;
+  attributionText?: string;
+  sourceUrl?: string;
 }
 
 export interface UserProfile {
@@ -71,14 +73,13 @@ export interface StationAdvancePayload {
 }
 
 export interface PresenceRider {
-  id: string;
+  id: string; // Opaque public ID (not raw socket ID)
   name: string;
-  stationId?: string;
 }
 
 export interface PresenceUpdatePayload {
   listenersCount: number;
-  stationCounts: Record<string, number>;
+  stationCounts: Record<string, number>; // Station ID -> count of riders leaving here
   riders: PresenceRider[];
 }
 
@@ -88,6 +89,10 @@ export interface JoinRoomPayload {
   startStationId: string;
   destStationId: string;
   name?: string;
+}
+
+export interface LeaveRoomPayload {
+  roomId?: string;
 }
 
 export interface TimePingPayload {
@@ -102,9 +107,9 @@ export interface TimePongPayload {
 // Chat Types
 export interface ChatRequestPayload {
   requestId: string;
-  fromUserId: string;
+  fromUserId: string; // Opaque public ID
   fromUserName: string;
-  toUserId: string;
+  toUserId: string; // Opaque public ID
 }
 
 export interface ChatAcceptPayload {
@@ -119,7 +124,7 @@ export interface ChatDeclinePayload {
 export interface ChatMessagePayload {
   chatId: string;
   messageId: string;
-  senderId: string;
+  senderId: string; // Opaque public ID
   text: string;
   timestamp: number;
 }
@@ -130,10 +135,17 @@ export interface ChatEndPayload {
 }
 
 export interface UserBlockPayload {
-  targetUserId: string;
+  targetUserId: string; // Opaque public ID
 }
 
 export interface UserReportPayload {
-  targetUserId: string;
+  targetUserId: string; // Opaque public ID
   reason: string;
+}
+
+export interface TrackErrorPayload {
+  sourceId: string;
+  stationId: string;
+  lineId: string;
+  error?: string;
 }

@@ -35,6 +35,49 @@ export class RoomManager {
     return linesMap[lineId];
   }
 
+  /**
+   * Validates lineId, direction, startStationId, and destStationId.
+   * Ensures start and dest exist on the line and are ordered according to the requested direction.
+   */
+  public validateJourney(params: {
+    lineId: string;
+    direction: Direction;
+    startStationId: string;
+    destStationId: string;
+  }): { isValid: boolean; error?: string } {
+    const { lineId, direction, startStationId, destStationId } = params;
+
+    const line = this.getLine(lineId);
+    if (!line) {
+      return { isValid: false, error: `Invalid line '${lineId}'` };
+    }
+
+    if (direction !== 'up' && direction !== 'down') {
+      return { isValid: false, error: `Invalid direction '${direction}'` };
+    }
+
+    const stations = this.getOrderedStations(lineId, direction);
+    const startIndex = stations.findIndex((s) => s.id === startStationId);
+    const destIndex = stations.findIndex((s) => s.id === destStationId);
+
+    if (startIndex === -1) {
+      return { isValid: false, error: `Start station '${startStationId}' does not exist on ${line.name}` };
+    }
+
+    if (destIndex === -1) {
+      return { isValid: false, error: `Destination station '${destStationId}' does not exist on ${line.name}` };
+    }
+
+    if (startIndex >= destIndex) {
+      return {
+        isValid: false,
+        error: `Destination '${destStationId}' must come after start '${startStationId}' in the '${direction}' direction`,
+      };
+    }
+
+    return { isValid: true };
+  }
+
   public getOrderedStations(lineId: string, direction: Direction): Station[] {
     const line = this.getLine(lineId);
     if (!line) return [];
@@ -45,7 +88,12 @@ export class RoomManager {
     return stations;
   }
 
-  public getOrCreateRoom(lineId: string, direction: Direction): ActiveRoom {
+  public getOrCreateRoom(lineId: string, direction: Direction): ActiveRoom | null {
+    const line = this.getLine(lineId);
+    if (!line || (direction !== 'up' && direction !== 'down')) {
+      return null;
+    }
+
     const roomId = RoomManager.getRoomId(lineId, direction);
     let room = this.rooms.get(roomId);
 
@@ -66,6 +114,7 @@ export class RoomManager {
 
       this.rooms.set(roomId, room);
       this.startRoomTimer(room);
+      console.log(`[RoomManager] Initialized active room: ${roomId}`);
     }
 
     return room;
@@ -92,7 +141,7 @@ export class RoomManager {
     const stations = this.getOrderedStations(room.lineId, room.direction);
     if (stations.length === 0) return null;
 
-    // Advance station; loop if reached terminus
+    // Advance station index
     room.stationIndex = (room.stationIndex + 1) % stations.length;
     const current = stations[room.stationIndex];
     const nextIndex = (room.stationIndex + 1) % stations.length;
@@ -124,6 +173,7 @@ export class RoomManager {
           clearInterval(room.timer);
         }
         this.rooms.delete(roomId);
+        console.log(`[RoomManager] Closed empty room: ${roomId}`);
       }
     }
   }

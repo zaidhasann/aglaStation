@@ -11,6 +11,7 @@ export const SOCKET_EVENTS = {
   ROOM_RESYNC: 'room:resync',
   STATION_ADVANCE: 'station:advance',
   STATION_ADVANCE_MANUAL: 'station:advance_manual',
+  TRACK_ERROR: 'track:error',
 
   // Presence & Identity
   PRESENCE_UPDATE: 'presence:update',

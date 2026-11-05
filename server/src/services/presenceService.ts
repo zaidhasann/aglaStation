@@ -1,62 +1,76 @@
 import { PresenceRider } from 'agla-station-shared';
+import crypto from 'crypto';
+import { containsProfanity } from './moderation';
 
-const PROFANITY_WORDS = ['badword', 'curse', 'abuse', 'hate', 'spam'];
-
-export interface InternalRider extends PresenceRider {
+export interface InternalRider {
+  socketId: string;
+  publicId: string; // Opaque public ID shared with other clients
+  name: string;
   roomId?: string;
+  startStationId?: string;
+  destStationId?: string;
 }
 
 export class PresenceService {
-  // socketId -> rider details
+  // socketId -> InternalRider
   private socketRiders: Map<string, InternalRider> = new Map();
+  // publicId -> socketId
+  private publicIdToSocketId: Map<string, string> = new Map();
   // roomId -> Set of socketIds
   private roomMembers: Map<string, Set<string>> = new Map();
 
-  public registerUser(socketId: string, initialName?: string, stationId?: string): InternalRider {
-    const randomHex = Math.floor(1000 + Math.random() * 9000);
-    const defaultName = `Anonymous Rider #${randomHex}`;
-    const name = this.sanitizeName(initialName) || defaultName;
+  public registerUser(socketId: string, initialName?: string, startStationId?: string, destStationId?: string): InternalRider {
+    // Generate an opaque, cryptographically random public ID
+    const publicId = `rider_${crypto.randomBytes(4).toString('hex')}`;
+    const defaultName = `Rider ${publicId.slice(-4).toUpperCase()}`;
+
+    let name = defaultName;
+    if (initialName && !containsProfanity(initialName)) {
+      name = initialName.trim().slice(0, 24);
+    }
 
     const rider: InternalRider = {
-      id: socketId,
+      socketId,
+      publicId,
       name,
-      stationId,
+      startStationId,
+      destStationId,
     };
+
     this.socketRiders.set(socketId, rider);
+    this.publicIdToSocketId.set(publicId, socketId);
     return rider;
   }
 
-  public sanitizeName(name?: string): string | null {
-    if (!name) return null;
-    let clean = name.trim().slice(0, 20);
+  public updateUserName(socketId: string, rawName: string): string | null {
+    if (!rawName) return null;
+    const clean = rawName.trim().slice(0, 24);
     if (clean.length < 2) return null;
 
-    // Basic profanity filter
-    for (const word of PROFANITY_WORDS) {
-      const regex = new RegExp(word, 'gi');
-      clean = clean.replace(regex, '***');
+    if (containsProfanity(clean)) {
+      return null;
     }
-    return clean;
-  }
-
-  public updateUserName(socketId: string, rawName: string): string | null {
-    const sanitized = this.sanitizeName(rawName);
-    if (!sanitized) return null;
 
     const rider = this.socketRiders.get(socketId);
     if (rider) {
-      rider.name = sanitized;
-      return sanitized;
+      rider.name = clean;
+      return clean;
     }
     return null;
   }
 
-  public joinRoom(socketId: string, roomId: string, stationId?: string) {
+  public joinRoom(socketId: string, roomId: string, startStationId?: string, destStationId?: string) {
     this.leaveRoom(socketId);
 
-    const rider: InternalRider = this.socketRiders.get(socketId) || this.registerUser(socketId);
+    let rider = this.socketRiders.get(socketId);
+    if (!rider) {
+      rider = this.registerUser(socketId, undefined, startStationId, destStationId);
+    } else {
+      rider.startStationId = startStationId;
+      rider.destStationId = destStationId;
+    }
+
     rider.roomId = roomId;
-    if (stationId) rider.stationId = stationId;
 
     if (!this.roomMembers.has(roomId)) {
       this.roomMembers.set(roomId, new Set());
@@ -81,16 +95,34 @@ export class PresenceService {
     return roomId;
   }
 
-  public removeUser(socketId: string): string | undefined {
+  public removeUser(socketId: string): { roomId?: string; publicId?: string } {
     const roomId = this.leaveRoom(socketId);
+    const rider = this.socketRiders.get(socketId);
+    const publicId = rider?.publicId;
+
+    if (publicId) {
+      this.publicIdToSocketId.delete(publicId);
+    }
     this.socketRiders.delete(socketId);
-    return roomId;
+    return { roomId, publicId };
   }
 
-  public getRider(socketId: string): InternalRider | undefined {
+  public getRiderBySocket(socketId: string): InternalRider | undefined {
     return this.socketRiders.get(socketId);
   }
 
+  public getSocketIdByPublicId(publicId: string): string | undefined {
+    return this.publicIdToSocketId.get(publicId);
+  }
+
+  public getPublicId(socketId: string): string | undefined {
+    return this.socketRiders.get(socketId)?.publicId;
+  }
+
+  /**
+   * Safe Presence: Exposes ONLY opaque publicId and display name.
+   * Never leaks boarding stations (startStationId) or raw socket IDs to peers.
+   */
   public getRoomPresence(roomId: string): {
     listenersCount: number;
     stationCounts: Record<string, number>;
@@ -103,9 +135,15 @@ export class PresenceService {
     for (const socketId of members) {
       const rider = this.socketRiders.get(socketId);
       if (rider) {
-        riders.push({ id: rider.id, name: rider.name, stationId: rider.stationId });
-        if (rider.stationId) {
-          stationCounts[rider.stationId] = (stationCounts[rider.stationId] || 0) + 1;
+        riders.push({
+          id: rider.publicId, // Opaque identifier
+          name: rider.name,
+        });
+
+        // Station counts count riders getting off at each destination
+        const dest = rider.destStationId;
+        if (dest) {
+          stationCounts[dest] = (stationCounts[dest] || 0) + 1;
         }
       }
     }

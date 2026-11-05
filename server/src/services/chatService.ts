@@ -1,99 +1,188 @@
+import { ReportsStore } from './reportsStore';
+import { sanitizeInput } from './moderation';
+import { CONFIG } from '../config';
+
 export interface ChatSession {
   chatId: string;
-  users: [string, string];
+  users: [string, string]; // Public IDs
+  socketIds: [string, string];
   createdAt: number;
 }
 
-export interface ChatReport {
-  reporterId: string;
-  targetId: string;
-  reason: string;
-  timestamp: number;
+export interface ChatRequest {
+  requestId: string;
+  fromPublicId: string;
+  fromSocketId: string;
+  fromUserName: string;
+  toPublicId: string;
+  toSocketId: string;
+  roomId: string;
+  createdAt: number;
 }
 
 export class ChatService {
-  // requestId -> { fromUserId, toUserId, fromUserName, createdAt }
-  private pendingRequests: Map<string, { fromUserId: string; toUserId: string; fromUserName: string; createdAt: number }> = new Map();
+  // requestId -> ChatRequest
+  private pendingRequests: Map<string, ChatRequest> = new Map();
   // chatId -> ChatSession
   private activeSessions: Map<string, ChatSession> = new Map();
-  // userBlocks: userId -> Set of blockedUserIds (Mutual block enforced)
+  // userBlocks: publicId -> Set of blocked publicIds (Mutual block)
   private userBlocks: Map<string, Set<string>> = new Map();
-  // rateLimits: userId -> timestamps array
+  // rate limits: publicId -> timestamps array
   private messageTimestamps: Map<string, number[]> = new Map();
-  // reports
-  private reports: ChatReport[] = [];
+  private requestTimestamps: Map<string, number[]> = new Map();
 
-  public createRequest(fromUserId: string, fromUserName: string, toUserId: string): { requestId: string } | { error: string } {
-    if (this.isBlocked(fromUserId, toUserId)) {
-      return { error: 'Unable to send request to this user.' };
+  private reportsStore: ReportsStore;
+
+  constructor(reportsStore: ReportsStore) {
+    this.reportsStore = reportsStore;
+
+    // Routine TTL cleanup every 15s to expire requests older than 60s
+    setInterval(() => {
+      this.cleanupExpiredRequests();
+    }, 15000);
+  }
+
+  private cleanupExpiredRequests() {
+    const now = Date.now();
+    for (const [id, req] of this.pendingRequests.entries()) {
+      if (now - req.createdAt > 60000) {
+        this.pendingRequests.delete(id);
+      }
+    }
+  }
+
+  public getPendingRequestsCountForUser(fromPublicId: string): number {
+    let count = 0;
+    const now = Date.now();
+    for (const req of this.pendingRequests.values()) {
+      if (req.fromPublicId === fromPublicId && now - req.createdAt <= 60000) {
+        count++;
+      }
+    }
+    return count;
+  }
+
+  public createRequest(params: {
+    fromPublicId: string;
+    fromSocketId: string;
+    fromUserName: string;
+    toPublicId: string;
+    toSocketId: string;
+    fromRoomId: string;
+    toRoomId?: string;
+  }): { requestId: string } | { error: string } {
+    const { fromPublicId, fromSocketId, fromUserName, toPublicId, toSocketId, fromRoomId, toRoomId } = params;
+
+    // Check if muted
+    if (this.reportsStore.isMuted(fromPublicId)) {
+      return { error: 'Your account has been temporarily restricted from sending chat requests.' };
+    }
+
+    // Mutual block check
+    if (this.isBlocked(fromPublicId, toPublicId)) {
+      return { error: 'Unable to send request to this rider.' };
+    }
+
+    // Same room requirement
+    if (!fromRoomId || fromRoomId !== toRoomId) {
+      return { error: 'Chat requests can only be sent to co-riders on the same train line.' };
+    }
+
+    // Prevent duplicate active request to the same target
+    const now = Date.now();
+    for (const req of this.pendingRequests.values()) {
+      if (req.fromPublicId === fromPublicId && req.toPublicId === toPublicId && now - req.createdAt < 60000) {
+        return { error: 'A pending request has already been sent to this rider.' };
+      }
+    }
+
+    // Max 3 pending requests per user
+    if (this.getPendingRequestsCountForUser(fromPublicId) >= 3) {
+      return { error: 'You have reached the maximum of 3 pending requests. Please wait for responses or timeout.' };
+    }
+
+    // Rate limit requests (e.g. max 3 requests per 60s)
+    if (!this.checkRateLimit(fromPublicId, this.requestTimestamps, CONFIG.RATE_LIMIT_REQUESTS_MAX, CONFIG.RATE_LIMIT_REQUESTS_WINDOW_MS)) {
+      return { error: 'You are sending chat requests too quickly. Please slow down.' };
     }
 
     const requestId = `req_${Date.now()}_${Math.random().toString(36).substring(2, 7)}`;
     this.pendingRequests.set(requestId, {
-      fromUserId,
+      requestId,
+      fromPublicId,
+      fromSocketId,
       fromUserName,
-      toUserId,
-      createdAt: Date.now(),
+      toPublicId,
+      toSocketId,
+      roomId: fromRoomId,
+      createdAt: now,
     });
+
     return { requestId };
   }
 
-  public getRequest(requestId: string) {
-    return this.pendingRequests.get(requestId);
+  public getRequest(requestId: string): ChatRequest | undefined {
+    const req = this.pendingRequests.get(requestId);
+    if (!req) return undefined;
+    if (Date.now() - req.createdAt > 60000) {
+      this.pendingRequests.delete(requestId);
+      return undefined;
+    }
+    return req;
   }
 
-  public acceptRequest(requestId: string, recipientUserId: string): { chatId: string; session: ChatSession } | { error: string } {
-    const req = this.pendingRequests.get(requestId);
+  public acceptRequest(requestId: string, recipientSocketId: string): { chatId: string; session: ChatSession } | { error: string } {
+    const req = this.getRequest(requestId);
     if (!req) return { error: 'Request not found or expired.' };
-    if (req.toUserId !== recipientUserId) return { error: 'Unauthorized request acceptance.' };
+    if (req.toSocketId !== recipientSocketId) return { error: 'Unauthorized request acceptance.' };
 
     this.pendingRequests.delete(requestId);
     const chatId = `chat_${Date.now()}_${Math.random().toString(36).substring(2, 7)}`;
     const session: ChatSession = {
       chatId,
-      users: [req.fromUserId, req.toUserId],
+      users: [req.fromPublicId, req.toPublicId],
+      socketIds: [req.fromSocketId, req.toSocketId],
       createdAt: Date.now(),
     };
     this.activeSessions.set(chatId, session);
     return { chatId, session };
   }
 
-  public declineRequest(requestId: string, recipientUserId: string): boolean {
-    const req = this.pendingRequests.get(requestId);
-    if (!req || req.toUserId !== recipientUserId) return false;
+  public declineRequest(requestId: string, recipientSocketId: string): boolean {
+    const req = this.getRequest(requestId);
+    if (!req || req.toSocketId !== recipientSocketId) return false;
     this.pendingRequests.delete(requestId);
     return true;
   }
 
-  public endChat(chatId: string, userId: string): ChatSession | null {
+  public endChat(chatId: string, userSocketId: string): ChatSession | null {
     const session = this.activeSessions.get(chatId);
-    if (!session || !session.users.includes(userId)) return null;
+    if (!session || !session.socketIds.includes(userSocketId)) return null;
     this.activeSessions.delete(chatId);
     return session;
   }
 
-  public isUserInChat(chatId: string, userId: string): boolean {
+  public isSocketInChat(chatId: string, socketId: string): boolean {
     const session = this.activeSessions.get(chatId);
-    return session ? session.users.includes(userId) : false;
+    return session ? session.socketIds.includes(socketId) : false;
   }
 
-  public getChatPartner(chatId: string, userId: string): string | null {
+  public getChatPartnerSocketId(chatId: string, socketId: string): string | null {
     const session = this.activeSessions.get(chatId);
     if (!session) return null;
-    return session.users[0] === userId ? session.users[1] : session.users[0];
+    return session.socketIds[0] === socketId ? session.socketIds[1] : session.socketIds[0];
   }
 
-  public blockUser(userId: string, targetUserId: string) {
-    // Mutual block
-    if (!this.userBlocks.has(userId)) this.userBlocks.set(userId, new Set());
-    if (!this.userBlocks.has(targetUserId)) this.userBlocks.set(targetUserId, new Set());
+  public blockUser(userPublicId: string, targetPublicId: string) {
+    if (!this.userBlocks.has(userPublicId)) this.userBlocks.set(userPublicId, new Set());
+    if (!this.userBlocks.has(targetPublicId)) this.userBlocks.set(targetPublicId, new Set());
 
-    this.userBlocks.get(userId)!.add(targetUserId);
-    this.userBlocks.get(targetUserId)!.add(userId);
+    this.userBlocks.get(userPublicId)!.add(targetPublicId);
+    this.userBlocks.get(targetPublicId)!.add(userPublicId);
 
     // End active chat if one exists between them
     for (const [chatId, session] of this.activeSessions.entries()) {
-      if (session.users.includes(userId) && session.users.includes(targetUserId)) {
+      if (session.users.includes(userPublicId) && session.users.includes(targetPublicId)) {
         this.activeSessions.delete(chatId);
       }
     }
@@ -103,42 +192,51 @@ export class ChatService {
     return this.userBlocks.get(userA)?.has(userB) || this.userBlocks.get(userB)?.has(userA) || false;
   }
 
-  public checkRateLimit(userId: string, maxMessages = 5, windowMs = 10000): boolean {
+  public checkMessageRateLimit(publicId: string): boolean {
+    return this.checkRateLimit(publicId, this.messageTimestamps, CONFIG.RATE_LIMIT_MAX_MESSAGES, CONFIG.RATE_LIMIT_WINDOW_MS);
+  }
+
+  private checkRateLimit(key: string, map: Map<string, number[]>, maxCount: number, windowMs: number): boolean {
     const now = Date.now();
-    const timestamps = (this.messageTimestamps.get(userId) || []).filter(t => now - t < windowMs);
-    if (timestamps.length >= maxMessages) {
-      return false; // Rate limit exceeded
+    const timestamps = (map.get(key) || []).filter((t) => now - t < windowMs);
+    if (timestamps.length >= maxCount) {
+      return false;
     }
     timestamps.push(now);
-    this.messageTimestamps.set(userId, timestamps);
+    map.set(key, timestamps);
     return true;
   }
 
-  public addReport(reporterId: string, targetId: string, reason: string) {
-    const report: ChatReport = {
-      reporterId,
-      targetId,
-      reason: reason.slice(0, 500),
-      timestamp: Date.now(),
-    };
-    this.reports.push(report);
-    console.log(`[REPORT] User ${reporterId} reported ${targetId}. Reason: ${reason}`);
+  public addReport(reporterPublicId: string, targetPublicId: string, reason: string): { isMuted: boolean } {
+    return this.reportsStore.addReport(reporterPublicId, targetPublicId, reason);
   }
 
-  public handleDisconnect(userId: string): string[] {
-    const endedChatIds: string[] = [];
+  public sanitizeMessage(text: string): { cleanText: string; isFlagged: boolean } {
+    return sanitizeInput(text, CONFIG.MAX_MESSAGE_LENGTH);
+  }
+
+  /**
+   * Cleans up on user disconnect.
+   * Returns list of ended sessions with partner socket IDs to notify ONLY the specific partner.
+   */
+  public handleDisconnect(socketId: string): { chatId: string; partnerSocketId: string }[] {
+    const notifications: { chatId: string; partnerSocketId: string }[] = [];
+
     for (const [chatId, session] of this.activeSessions.entries()) {
-      if (session.users.includes(userId)) {
-        endedChatIds.push(chatId);
+      if (session.socketIds.includes(socketId)) {
+        const partnerSocketId = session.socketIds[0] === socketId ? session.socketIds[1] : session.socketIds[0];
+        notifications.push({ chatId, partnerSocketId });
         this.activeSessions.delete(chatId);
       }
     }
+
     // Clean up pending requests
     for (const [reqId, req] of this.pendingRequests.entries()) {
-      if (req.fromUserId === userId || req.toUserId === userId) {
+      if (req.fromSocketId === socketId || req.toSocketId === socketId) {
         this.pendingRequests.delete(reqId);
       }
     }
-    return endedChatIds;
+
+    return notifications;
   }
 }
